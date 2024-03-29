@@ -1,0 +1,120 @@
+{
+  "proxy": {
+    "method": "post",
+    "target": "{The target URL/IP Address}",
+    "authorization": {
+      "type": "passthrough"
+    },
+    "logSettings": {
+      "requestMasks": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Email",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Password",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Address",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.City",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.State",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.ZIPCode",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Country",
+          "pattern": "all"
+        }
+      ],
+      "responseMasks": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Result.Secret",
+          "pattern": "all"
+        }
+      ]
+    }
+  },
+  "actions": [
+    {
+      "type": "shieldconex",
+      "authorization": {
+        "type": "basic",
+        "username": "{partnerID}",
+        "password": "{partnerKey}"
+      },
+      "templateRef": "{templateRef}",
+      "method": "detokenize",
+      "model": "sync",
+      "substitutions": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Email",
+          "fieldName": "email"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Password",
+          "fieldName": "password"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Address",
+          "fieldName": "address_line1"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.City",
+          "fieldName": "city"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.State",
+          "fieldName": "state"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.ZIPCode",
+          "fieldName": "postal_code"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.User.Country",
+          "fieldName": "country"
+        }
+      ]
+    }
+  ]
+}

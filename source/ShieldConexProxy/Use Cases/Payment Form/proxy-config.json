@@ -1,0 +1,96 @@
+{
+  "proxy": {
+    "method": "post",
+    "target": "{The target URL/IP Address}",
+    "authorization": {
+      "type": "passthrough"
+    },
+    "logSettings": {
+      "requestMasks": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.CCN",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.Expiry",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.CVV",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.BAN",
+          "pattern": "all"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.RTN",
+          "pattern": "all"
+        }
+      ],
+      "responseMasks": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Result.Secret",
+          "pattern": "all"
+        }
+      ]
+    }
+  },
+  "actions": [
+    {
+      "type": "shieldconex",
+      "authorization": {
+        "type": "basic",
+        "username": "{partnerID}",
+        "password": "{partnerKey}"
+      },
+      "templateRef": "{templateRef}",
+      "method": "detokenize",
+      "model": "sync",
+      "substitutions": [
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.CCN",
+          "fieldName": "scx_token_card_number"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.Expiry",
+          "fieldName": "scx_token_card_expiration"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.CVV",
+          "fieldName": "scx_token_card_verification"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.BAN",
+          "fieldName": "scx_token_bank_account_number"
+        },
+        {
+          "transformationSource": "body",
+          "transformationType": "jsonpath",
+          "transformationPath": "$.Card.RTN",
+          "fieldName": "scx_token_bank_routing_number"
+        }
+      ]
+    }
+  ]
+}

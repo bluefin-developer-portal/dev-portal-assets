@@ -41,7 +41,7 @@ const authHeader = "Hmac "
 
 console.log('timestamp:        ' + timestamp)
 console.log('nonce:            ' + nonce  )
-console.log('body:             ' + body   ) // Take this body exactly as it is and put in your API call
+console.log('body:             ' + body   ) // Carefully, take this body exactly as it is and put in your API call. Otherwise, you will receive an authentication required error message
 console.log('SHA256:           ' + payloadHash   )
 console.log('SHA 1 :           ' + CryptoJS.SHA1(body)   )
 console.log('canonicalRequest: ' + canonicalRequest)

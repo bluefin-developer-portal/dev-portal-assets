@@ -59,7 +59,7 @@
       "templateRef": "{templateRef}",
       "method": "detokenize",
       "model": "sync",
-      "substitutions": [
+      "instructions": [
         {
           "transformationSource": "body",
           "transformationType": "jsonpath",

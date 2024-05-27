@@ -1,4 +1,4 @@
-package com.example.smartpos4.utils;
+package com.example.apiexamples.utils;
 
 import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;

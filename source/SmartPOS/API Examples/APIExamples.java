@@ -1,4 +1,4 @@
-package com.example.smartpos4;
+package com.example.apiexamples;
 
 import java.io.IOException;
 import java.net.UnknownHostException;
@@ -29,7 +29,7 @@ import at.tecs.smartpos.data.RFReturnCode;
 import at.tecs.smartpos.data.PrinterPrintType;
 import at.tecs.smartpos.data.PrinterReturnCode;
 
-import com.example.smartpos4.Connector;
+import com.example.apiexamples.Connector;
 
 public class APIExamples {
 

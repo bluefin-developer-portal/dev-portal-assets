@@ -1,4 +1,4 @@
-package com.example.smartpos4.utils;
+package com.example.apiexamples.utils;
 
 // Copyright 2016, S&K Software Development Ltd.
 // Use of this source code is governed by a BSD-style

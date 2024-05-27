@@ -1,4 +1,4 @@
-package com.example.smartpos4.utils;
+package com.example.apiexamples.utils;
 
 import javax.crypto.spec.SecretKeySpec;
 

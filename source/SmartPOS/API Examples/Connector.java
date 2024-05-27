@@ -1,4 +1,4 @@
-package com.example.smartpos4;
+package com.example.apiexamples;
 
 
 import java.io.Console;

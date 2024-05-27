@@ -1,4 +1,4 @@
-package com.example.smartpos4;
+package com.example.apiexamples;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -21,7 +21,7 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import com.example.smartpos4.utils.CRC;
+import com.example.apiexamples.utils.CRC;
 
 public class Utils {
 

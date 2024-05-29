@@ -32,9 +32,7 @@ import at.tecs.smartpos.data.PrinterReturnCode;
 import com.example.apiexamples.Connector;
 
 public class APIExamples {
-
     private PaymentService paymentService;
-    
     APIExamples() {
         String hostname = "localhost";
         int port = 9990;
@@ -792,54 +790,42 @@ public class APIExamples {
         String imageBuffer = "Qk3+EgAAAAAAAD4AAAAoAAAAgAEAAGQAAAABAAEAAAAAAMASAAAAAAAAAAAAAAAAAAAAAAAAAAAAAP///wD/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////wAB////////8////////////////////////////////////////////////////gAAP///////8/////wB////////////////wH///////z///////////////////gAAH///////8/////AAf///8AAAAAf////4AAP/////AAB//////////////////gAAB///////8/////AAf///8AAAAAH////gAAB////4AAAf/////////////////gAAA///////8/////AAf///8AAAAAD///8AAAAf///gAAAH/////////////////gAAAf//////8/////AAf///8AAAAAD///4AAAAH//+AAAAB/////////////////gAAAP//////8/////AAf///8AAAAAB///gAAAAD//4AAAAA/////////////////gAAAP//////8/////AAf///8AAAAAB///AAAAAA//gAAAAAf////////////////gAAAH//////8/////AAf///8AAAAAB//+AAAAAAf/AAAAAAP////////////////gAAAH//////8/////AAf///8AAAAAB//8AAAAAAP+AAAAAAH////////////////gAAAD//////8/////AAf///8AAAAAB//4AAAAAAP+AAAAAAD////////////////gAAAD//////8/////AAf///8AAAAAB//wAAAAAAP+AAAAAAD////////////////gAAAB//////8/////AAf///8AB//////gAAH4AAf+AAD/gAB////////////////gAAAB//////8/////AAf///8AB//////AAA//gAf/AAf/4AB////////////////gAAAB//////8/////AAf///8AB//////AAD//4A//AD//+AB////////////////gAAAB//////8/////AAf///8AB/////+AAP//+B//gH///AA////////////////gAAAB//////8/////AAf///8AB/////+AAf///D//wf///AA////////////////gAAAB//////8/////AAf///8AB/////8AA////////////AA////////////////gAAAB//////8/////AAf///8AB/////8AB////////////gA////////////////gAAAB//////8/////AAf///8AB/////4AB////////////gA////////////////gAAAB//////8/////AAf///8AB/////4AD////////////gA////////////////gAAAB//////8/////AAf///8AB/////wAH////////////AA////////////////gAAAB//////8/////AAf///8AB/////wAH////////////AA////////////////gAAAB//////8/////AAf///8AB/////wAH////////////AA////////////////gAAAB//////8/////AAf///8AB/////gAP///////////+AA////////////////gAAAB//////8/////AAf///8AB/////gAP///////////8AA////////////////gAAAB//////8/////AAf///8AB/////gAP///////////wAB////////////////gAAAB//////8/////AAf///8AB/////gAf///////////gAB////////////////gAAAB//////8/////AAf///8AB/////gAf//////////+AAB////////////////gAAAB//////8/////AAf///8AB/////gAf//////////4AAD////////////////gAAAB//////8/////AAf///8AAAAP//AAf//////////gAAH////////////////gAAAB//////8/////AAf///8AAAAH//AAf/////////8AAAP////////////////gAAAB//////8/////AAf///8AAAAB//AAf/////////wAAAP////////////////gAAAB//////8/////AAf///8AAAAB//AAf/////////AAAAf////////////////gAAABqr////8/////AAf///8AAAAA//AAf////////8AAAB/////////////////gAAABVVf///8/////AAf///8AAAAA//AAf////////wAAAD/////////////////gAAABqqv///8/////AAf///8AAAAA//AA/////////gAAAP/////////////////gAAABVVV///8/////AAf///8AAAAA//AAf////////AAAAf/////////////////gAAABqqq///8/////AAf///8AAAAA//AAf///////+AAAB//////////////////gAAABVVVf//8/////AAf///8AAAAA//AAf///////8AAAH//////////////////gAAABqqqv//8/////AAf///8AAAAA//AAf///////4AAA///////////////////gAAABVUVX//8/////AAf///8AB/////gAf///////wAAD///////////////////gAAABqqqr//8/////AAf///8AB/////gAf///////wAAP///////////////////gAAABVVVV//8/////AAf///8AB/////gAf///////gAA////////////////////gAAABqqqr//8/////AAf///8AB/////gAP///////gAD////////////////////gAAABVVVU//8/////AAf///8AB/////gAP///////AAH////////////////////gAAABqqqq//8/////AAf///8AB/////wAP///////AAf////////////////////gAAABVVVVf/8/////AAf///8AB/////wAH///////AAf////////////////////gAAABqqqq//8/////AAf///8AB/////wAH///////AA/////////////////////gAAABVVVVf/8/////AAf///8AB/////4AD///////AA///////////////////4igAAABqqqqv/8/////AAf///8AB/////4AD///////AB//////////////////8AAgAAABVVVVf/8/////AAf///8AB/////4AB///////AB//////////////////oqKgAAABqqqqv/8/////AAf///8AB/////8AA///////AB/////////////////+AAAgAAABVVVVf/8/////AAf///8AB/////8AA///////AA/////////////////8iIigAAABqqqqv/8/////AAf///8AB/////+AAP///H//AA/////////////////4AAAgAAABVVVVf/8/////AAf///8AB/////+AAH//8B//AA///w/////////////6qqqgAAABqqqqv/8/////AAf///8AB//////AAD//wB//gAf//Af////////////gAAAwAAABVUVVf/8/////AAf///8AB//////gAAf/AA//gAH/8AP////////////IiIiQAAABqqqqv/8/+AABAAf///8AB//////gAAAAAAf/gAA/AAP////////////AAAAYAAABVVVVf/8/+AAAAAAAB/8AAAAAf//wAAAAAAf/wAAAAAH///////////+ioqKoAAABqqqqv/8/+AAAAAAAA/8AAAAAH//4AAAAAAP/wAAAAAH///////////+AAAAMAAABVVVVf/8/+AAAAAAAAf8AAAAAD//8AAAAAAP/4AAAAAD///////////+IiIiMAAABqqqqv/8/+AAAAAAAAf8AAAAAD//+AAAAAAf/8AAAAAD///////////8AAAAGAAABVVVVf/8/+AAAAAAAAP8AAAAAB///AAAAAA//+AAAAAH///////////+qqqqrAAABqqqqv/8/+AAAAAAAAP8AAAAAB///wAAAAD///AAAAAP///////////4AAAABgAABVVVVf/8//AAAAAAAAP8AAAAAB///4AAAAH///gAAAA////////////6IiIiI4AABqqqqv/8//AAAAAAAAP8AAAAAB///+AAAAf///4AAAD////////////4AAAAAMAABVVVVf/8//gAAAAAAAP8AAAAAB////wAAB////+AAAP////////////6ioqKivgABqqqq//8//4AAAAAAAP+AAAAAB////+AAf/////wAD/////////////4AAAAAA/////////////////////////////////////////////////////////6IiIiIiIiJ//////////////////////////////////////////////////////4AAAAAAAAB//////////////////////////////////////////////////////6qqqqqqqqr//////////////////////////////////////////////////////4AAAAAAAAD//////////////////////////////////////////////////////+IiIiIiIiP//////////////////////////////////////////////////////+AAAAAAAAP///////////////////////////////////////////////////////ioqKioqK//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////8=";
         String receiptTicket = "         KUNDENBELEG\n\n\nTID: 88091137   MID: 102003557\nDate: 07/05/2021     Time: 15:30\n\n\nSALE                            \nVISA CREDIT                     \nPAN: ************0119          \nPAN SEQ NO: 01                  \nVISA ACQUIRER TEST/CARD 01     \n\n\nSTAN: 154714                   \nTXID: 20210507153032           \nORIG. TXID: 20210507153032     \nAPPROVAL CODE: 213031          \nINVOICE:1                      \nAC: F46E3CEA8232A966           \nAID: A0000000031010                \n\n\nEUR                        1.00\n\n\n           Authorized\n";
 
-        Thread t1 = new Thread(new Runnable() {
+        SmartPOSController smartPOSController = new SmartPOSController();
+        smartPOSController.openPrinter(new SmartPOSController.OpenPrinterListener() {
             @Override
-            public void run() {
-                try {
-                    SmartPOSController smartPOSController = new SmartPOSController();
-                    smartPOSController.openPrinter(new SmartPOSController.OpenPrinterListener() {
-                        @Override
-                        public void onOpened(PrinterControl printerControl) {
-                            PrinterReturnCode ret = printerControl.getStatus();
-                            if (ret != PrinterReturnCode.SUCCESS) {
-                                printerControl.close();
-                                return;
-                            }
-                            ret = printerControl.print(imageBuffer, PrinterPrintType.IMAGE);
-                            if (ret != PrinterReturnCode.SUCCESS) {
-                                printerControl.close();
-                                return;
-                            }
-                            printerControl.feedLine(2);
-                            ret = printerControl.print(receiptTicket, PrinterPrintType.TEXT);
-                            if (ret != PrinterReturnCode.SUCCESS) {
-                                printerControl.close();
-                                return;
-                            }
-                            printerControl.feedLine(2);
-                            ret = printerControl.print("https://www.tecs.at/", PrinterPrintType.QR_SMALL);
-                            if (ret != PrinterReturnCode.SUCCESS) {
-                                printerControl.close();
-                                return;
-                            }
-                            printerControl.feedLine(10);
-                            printerControl.close();
-                        }
-                        @Override
-                        public void onError(PrinterReturnCode printerReturnCode) {
-                            System.out.println("PRINTER ERROR");
-                            System.out.println(printerReturnCode);
-                            smartPOSController.closePrinter();
-                        }
-                    });
-
-                } finally {
-
+            public void onOpened(PrinterControl printerControl) {
+                PrinterReturnCode ret = printerControl.getStatus();
+                if (ret != PrinterReturnCode.SUCCESS) {
+                    printerControl.close();
+                    return;
                 }
-
+                ret = printerControl.print(imageBuffer, PrinterPrintType.IMAGE);
+                if (ret != PrinterReturnCode.SUCCESS) {
+                    printerControl.close();
+                    return;
+                }
+                printerControl.feedLine(2);
+                ret = printerControl.print(receiptTicket, PrinterPrintType.TEXT);
+                if (ret != PrinterReturnCode.SUCCESS) {
+                    printerControl.close();
+                    return;
+                }
+                printerControl.feedLine(2);
+                ret = printerControl.print("https://www.tecs.at/", PrinterPrintType.QR_SMALL);
+                if (ret != PrinterReturnCode.SUCCESS) {
+                    printerControl.close();
+                    return;
+                }
+                printerControl.feedLine(10);
+                printerControl.close();
+            }
+            @Override
+            public void onError(PrinterReturnCode printerReturnCode) {
+                System.out.println("PRINTER ERROR");
+                System.out.println(printerReturnCode);
+                smartPOSController.closePrinter();
             }
         });
-        t1.start();
 
     }
 

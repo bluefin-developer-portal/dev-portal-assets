@@ -730,6 +730,31 @@ public class APIExamples {
 
     }
 
+    public void RFCommunicationReadUUID() {
+        SmartPOSController smartPOSController = new SmartPOSController();
+
+        smartPOSController.openCardReader(10000, Command.CARD_TYPE.M1, new SmartPOSController.OpenCardReaderListener() {
+            @Override
+            public void onDetected(CardControl cardControl, int cardType, byte[] UUID) {
+                StringBuilder hex_uuid = new StringBuilder();
+                for (byte b : UUID) {
+                    hex_uuid.append(String.format("%02X ", b));
+                }
+
+                // use UUID
+                System.out.println(Arrays.toString(UUID));
+                System.out.println(hex_uuid.toString());
+
+                cardControl.close();
+            }
+            @Override
+            public void onError(RFReturnCode returnCode) {
+                // Handle return code
+                System.out.println("Controller Error");
+            }
+        });
+    }
+
     public void RFCommunicationReadBlock() {
         SmartPOSController smartPOSController = new SmartPOSController();
 // The RF interface opens for 10,000 milliseconds, accepting M0 card types
@@ -831,3 +856,4 @@ public class APIExamples {
 
     
 }
+

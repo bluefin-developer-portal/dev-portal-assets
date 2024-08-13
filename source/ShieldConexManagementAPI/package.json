@@ -1,7 +1,7 @@
 {
-  "name": "HMAC Generator",
+  "name": "HMAC/RSA Auth Generator for ShieldConex Management API",
   "version": "0.0.1",
-  "description": "HMAC Generator Script Example for PayConex",
+  "description": "HMAC/RSA Generator Script Example",
   "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

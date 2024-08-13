@@ -1,0 +1,14 @@
+{
+  "name": "Test Client",
+  "isActive": false,
+  "directPartner": {
+    "id": 999,
+    "name": "partnerName"
+  },
+  "contact": {
+    "id": 2666,
+    "firstName": "WATERFORD",
+    "lastName": "Example",
+    "email": "waterford@example.com"
+  }
+}

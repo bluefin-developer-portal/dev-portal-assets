@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Test Store</title>
+  <script src="https://secure.payconex.net/iframe-v2/iframe-v2.0.0.min.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div id="bluefin-container"></div>
+
+  <form action="" id="checkoutForm">
+    <h1>Test Store</h1>
+
+    <label for="html">Checkout Total</label><br>
+    <input type="text" id="amount" placeholder="Ex: 23.77">
+
+    <label id="typeSubLabel" for="html">Type of Subscription:</label><br>
+    <select id="typeSubOption">
+      <option value="Weekly">Weekly</option>
+      <option value="Monthly">Monthly</option>
+      <option value="Yearly">Yearly</option>
+    </select>
+
+    <button type="submit">BUY</button>
+  </form>
+
+  <div id="subscriptionList"></div>
+
+  <script src="index.js"></script>
+</body>
+
+</html>

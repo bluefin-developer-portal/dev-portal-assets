@@ -18,7 +18,9 @@ const url = URL
 const timestamp = Math.round(+new Date() / 1000)
 const nonce = CryptoJS.lib.WordArray.random(32)
 
-const body = JSON.stringify(request.data) // For POST
+// For POST, make sure you json-encode the body.
+// In the case of the empty body for a GET request, just `const body = ''`
+const body = JSON.stringify(request.data) 
 
 const payloadHash = CryptoJS.SHA256(body)
 

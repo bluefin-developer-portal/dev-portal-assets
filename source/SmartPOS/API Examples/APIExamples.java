@@ -11,7 +11,6 @@ import java.util.Random;
 
 import at.tecs.smartpos.PaymentService;
 import at.tecs.smartpos.PrinterControl;
-import at.tecs.smartpos.connector.ConnectionListener;
 
 import at.tecs.smartpos.data.PrinterReturnCode;
 import at.tecs.smartpos.data.Transaction;
@@ -29,42 +28,39 @@ import at.tecs.smartpos.data.RFReturnCode;
 import at.tecs.smartpos.data.PrinterPrintType;
 import at.tecs.smartpos.data.PrinterReturnCode;
 
-import com.example.apiexamples.Connector;
 
 public class APIExamples {
-    private PaymentService paymentService;
+
+    private final PaymentService paymentService;
+    
     APIExamples() {
         String hostname = "localhost";
         int port = 9990;
 
-        Connector connector = new Connector();
-        connector.setConnection(hostname, port);
+        paymentService = PaymentService.getInstance();
 
+        paymentService.setHostname(hostname);
+        paymentService.setPort(port);
 
-        paymentService = connector.getPaymentService();
+        if(paymentService.connect()) {
+            System.out.println("Connected!");
 
-        paymentService.connect(new ConnectionListener() {
-            @Override
-            public void onConnected() {
+        } else {
 
-            }
+            System.out.println("Error occurred: Not connected");
 
-            @Override
-            public void onUnknownHost(UnknownHostException e) {
-
-            }
-
-            @Override
-            public void onSocketFail(IOException e) {
-
-            }
-        });
+        }
 
         try {
-            connector.waitForConnection();
-        } catch (InterruptedException e) {
+            while (!paymentService.isConnected()) {
+                System.out.println("NOT CONNECTED");
+                Thread.sleep(1000);
+            }
+        } catch(InterruptedException e) {
             throw new RuntimeException(e);
         }
+
+
     }
 
     public String generatePostfix() {
@@ -856,4 +852,3 @@ public class APIExamples {
 
     
 }
-

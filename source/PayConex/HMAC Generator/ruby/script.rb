@@ -39,7 +39,7 @@ METHOD = "GET"
 URI_PATH = ENV["URI"]
 API_KEY_ID = ENV["API_KEY_ID"]
 API_SECRET_KEY = ENV["API_SECRET_KEY"]
-BODY = "" # { "PAYCONEX_TOKEN" => "...", ... }
+BODY = "" # { "bfTokenReference" => "...", ... }
 
 hmac_header = generate(METHOD, URI_PATH, API_KEY_ID, API_SECRET_KEY, BODY)
 

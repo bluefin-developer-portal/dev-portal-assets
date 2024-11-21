@@ -10,7 +10,7 @@ const URL = `/api/v4/accounts/${accountId}/payments/sale`
 console.log(URL)
 
 const request = { method: 'post', url: URL, data: `{
-  "token": "${PAYCONEX_TOKEN}",
+  "bfTokenReference": "${PAYCONEX_TOKEN}",
   "posProfile": "MOTO",
   "amounts": { "total": "5", "currency": "USD" }
 }` }

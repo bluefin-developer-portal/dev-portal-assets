@@ -4,7 +4,6 @@ import fetch from 'node-fetch'
 import cors from 'cors'
 import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
-import { jwtDecode } from 'jwt-decode'
 
 const PORT = process.env.PORT || 3000
 // PayConex account ID number
@@ -13,11 +12,17 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID
 const BASIC_TOKEN = process.env.BASIC_TOKEN
 const ENVIRONMENT_URL = 'https://api-cert.payconex.net'
 const TEMPLATE_REFERENCE = process.env.TEMPLATE_REFERENCE
+const IFRAME_CONFIG_ID = process.env.IFRAME_CONFIG_ID
+
 let db
 
 const app = express()
 app.use(express.json())
 app.use(cors())
+
+// console.log('ACCOUNT_ID: ', ACCOUNT_ID)
+// console.log('BASIC_TOKEN: ', BASIC_TOKEN)
+// console.log('IFRAME_CONFIG_ID: ', IFRAME_CONFIG_ID)
 
 // List all subscriptions that belong to that user
 app.get('/subscription', async function(req, res) {
@@ -36,7 +41,7 @@ app.get('/subscription', async function(req, res) {
 
     subscriptions.forEach(subscription => {
       subscriptionList.push({
-        bluefinId: subscription.bfid,
+        token: subscription.token,
         amount: subscription.amount,
         typeSubscription: subscription.type_subscription
       })
@@ -46,7 +51,7 @@ app.get('/subscription', async function(req, res) {
   } catch (err) {
     console.log('Error getting the subscriptions: ', err)
   }
-});
+})
 
 // See: https://developers.bluefin.com/payconex/v4/reference/processing-a-sale
 // And: https://developers.bluefin.com/payconex/v4/reference/customer-and-merchant-initiated-transactions-1
@@ -60,10 +65,14 @@ async function processSale(req, res) {
     return res.status(400).json({ 'message': 'Missing subscription data for process sale.' })
   }
 
+  // NOTE: Or use the shieldconex tokens for the recurring payments as MITs. See https://developers.bluefin.com/payconex/v4/reference/customer-and-merchant-initiated-transactions-1. But this requires storing customer information separately in your database as the shieldconex token only consists of the tokenized card data. 
   const subsequentSaleBody = {
-    "token": subsequentTransactionToken,
-    "posProfile": "MOTO",
-    "amounts": { "total": amount, "currency": "USD" },
+    "bfTokenReference": subsequentTransactionToken,
+    "posProfile": "SERVER",
+    "amounts": {
+      "total": amount,
+      "currency": "USD"
+    },
     "credentialOnFileOverride": {
       "transactionInitiator": "MERCHANT",
       "storedCredentialIndicator": "SUBSEQUENT",
@@ -79,9 +88,9 @@ async function processSale(req, res) {
         'Authorization': `Basic ${BASIC_TOKEN}`
       },
       body: JSON.stringify(subsequentSaleBody)
-    });
+    })
 
-    const subsequentProcessSaleData = await subsequentProcessSaleResponse.json();
+    const subsequentProcessSaleData = await subsequentProcessSaleResponse.json()
     return res.json({ 'transactionData': subsequentProcessSaleData })
   } catch (err) {
     console.log('Error processing the sale: ', err)
@@ -95,17 +104,18 @@ app.post('/generate-bearer-token', async function generateBearerToken(req, res) 
   if (!amount) {
     return res.status(400).json({ 'message': 'Missing amount to generate bearer token.' })
   }
+  
+  
 
-  const iframeReqBody = {
-    "label": "Card only iframe",
+  const iframeInstanceReqBody = {
+    "label": "Card only iframe instance",
     "language": "ENGLISH",
+    "amount": amount,
+    "reference": TEMPLATE_REFERENCE,
     "timeout": 800,
     "allowedPaymentMethods": [
       "CARD",
       "ACH"
-    ],
-    "allowedParentDomains": [
-      "*"
     ],
     "achSettings": {
       "billingAddress": {
@@ -134,10 +144,20 @@ app.post('/generate-bearer-token', async function generateBearerToken(req, res) 
       "captureShippingAddress": false
     },
     "savePaymentOption": "required",
-    "currency": "USD"
+    "currency": "USD",
+    "threeDSecureInitSettings": {
+      "transactionType": "GOODS_SERVICE_PURCHASE",
+      "deliveryTimeFrame": "ELECTRONIC_DELIVERY",
+      "threeDSecureChallengeIndicator": "NO_PREFERENCE",
+      "reorderIndicator": "FIRST_TIME_ORDERED",
+      "shippingIndicator": "BILLING_ADDRESS"
+    }
   }
 
   try {
+  
+    // Creating Iframe configuration. However, we use one global configuration and integrate with the instance creation.
+    /*
     const iframeResponse = await fetch(`${ENVIRONMENT_URL}/api/v4/accounts/${ACCOUNT_ID}/payment-iframe`, {
       method: 'post',
       headers: {
@@ -147,32 +167,33 @@ app.post('/generate-bearer-token', async function generateBearerToken(req, res) 
       body: JSON.stringify(iframeReqBody)
     })
 
-    const createdComponent = await iframeResponse.json();
+    const createdComponent = await iframeResponse.json()
     const resourceId = createdComponent.id
 
     const instanceReqBody = {
       "label": "my-instance-2",
       "amount": amount,
-      "reference": TEMPLATE_REFERENCE,
-      "threeDSecureInitSettings": {
-        "transactionType": "GOODS_SERVICE_PURCHASE",
-        "deliveryTimeFrame": "ELECTRONIC_DELIVERY",
-        "threeDSecureChallengeIndicator": "NO_PREFERENCE",
-        "reorderIndicator": "FIRST_TIME_ORDERED",
-        "shippingIndicator": "BILLING_ADDRESS"
-      }
-    }
 
-    const instanceResponse = await fetch(`${ENVIRONMENT_URL}/api/v4/accounts/${ACCOUNT_ID}/payment-iframe/${resourceId}/instance/init`, {
+    }
+    */
+
+    // NOTE: We recommend having one global iframe configuration and overwriting that Iframe configuration based on a customer. Of course, you can also have multiple iframe configurations but we don't recommend creating one each time. See https://developers.bluefin.com/payconex/v4/reference/creating-an-instance#overwriting-configuration
+    const instanceResponse = await fetch(`${ENVIRONMENT_URL}/api/v4/accounts/${ACCOUNT_ID}/payment-iframe/${IFRAME_CONFIG_ID}/instance/init`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/json',
         'Authorization': `Basic ${BASIC_TOKEN}`
       },
-      body: JSON.stringify(instanceReqBody)
+      body: JSON.stringify(iframeInstanceReqBody)
     })
 
-    const createdInstance = await instanceResponse.json();
+    const createdInstance = await instanceResponse.json()
+    
+    if(instanceResponse.status >= 400) {
+      res.status(instanceResponse.status)
+      return res.json(createdInstance)
+    }
+    
     return res.json({ 'bearerToken': createdInstance.bearerToken })
   } catch (err) {
     console.log('Error generating the bearer token: ', err)
@@ -189,7 +210,7 @@ app.post('/subscription', async function(req, res) {
   }
 
   const body = {
-    "token": payConexToken,
+    "bfTokenReference": payConexToken,
     "posProfile": "ECOMMERCE"
   }
 
@@ -203,60 +224,56 @@ app.post('/subscription', async function(req, res) {
       body: JSON.stringify(body)
     })
 
-    const storedCardData = await storeCardResponse.json();
-    const subsequentTransactionToken = storedCardData.token
-    const tokenDataDecoded = jwtDecode(subsequentTransactionToken).payload.token
-    const tokenizedCardValues = tokenDataDecoded.values
+    const storedCardData = await storeCardResponse.json()
+    
+    if(storeCardResponse.status >= 400) {
+      res.status(storeCardResponse.status)
+      return res.json(storedCardData)
+    }
+    
+    const subsequentTransactionToken = storedCardData.bfTokenReference
+    const { shieldConexToken } = storedCardData
 
     const tokenizedCardData = {
-      bfid: tokenDataDecoded.bfid,
+      bfid: shieldConexToken.bfid,
       token: subsequentTransactionToken,
+      cardNumber: shieldConexToken.tokenCardNumber,
+      cardExpiration: shieldConexToken.tokenCardExpiration,
       typeSubscription,
       amount
     }
-
-    const keysToStore = {
-      'scx_token_card_number': 'cardNumber',
-      'scx_token_card_expiration': 'cardExpiration',
-      'scx_token_name': 'tokenName'
-    }
-
-    for (const tokenizedCardValue of tokenizedCardValues) {
-      if (tokenizedCardValue.name in keysToStore) {
-        tokenizedCardData[keysToStore[tokenizedCardValue.name]] = tokenizedCardValue.value
-      }
-    }
+    
+    // console.log('tokenizedCardData', tokenizedCardData)
 
     await db.run(
-      'INSERT INTO subscriptions(bfid, token, card_number, card_expiration, token_name, type_subscription, amount)'
-      + ' VALUES (?, ?, ?, ?, ?, ?, ?)',
+      'INSERT INTO subscriptions(bfid, token, card_number, card_expiration, type_subscription, amount)'
+      + ' VALUES (?, ?, ?, ?, ?, ?)',
       [
         tokenizedCardData.bfid,
         tokenizedCardData.token,
         tokenizedCardData['cardNumber'],
         tokenizedCardData['cardExpiration'],
-        tokenizedCardData['tokenName'],
         tokenizedCardData.typeSubscription,
         tokenizedCardData.amount
       ]
     )
 
-    return res.status(201).json({ "bluefinId": tokenizedCardData.bfid })
+    return res.status(201).json({ "token": tokenizedCardData.token })
   } catch (err) {
     console.log('Error creating the subscription: ', err)
   }
-});
+})
 
-// PayConex API V4 will soon support the recurring payments feature.
+// ISV implements the recurring payment solution (the interval) to trigger this endpoint and, thus, the recurring payment. PayConex API V4 will soon support the scheduled recurring payments feature.
 app.post('/recurring-payment', async function(req, res) {
-  const { bfId } = req.body
+  const { token } = req.body
 
-  if (!bfId) {
-    return res.status(400).json({ 'message': 'Missing Bluefin ID for recurring payment.' })
+  if (!token) {
+    return res.status(400).json({ 'message': 'Missing Bluefin token for recurring payment.' })
   }
 
   try {
-    const subscription = await db.get('SELECT * FROM subscriptions WHERE bfid = ?', bfId)
+    const subscription = await db.get('SELECT * FROM subscriptions WHERE token = ?', token)
     console.log('Recurring payment subscription data: ', subscription)
 
     if (!subscription) {
@@ -268,27 +285,27 @@ app.post('/recurring-payment', async function(req, res) {
   } catch (err) {
     console.log('Error processing the recurring payment: ', err)
   }
-});
+})
 
 // Deletes a subscription using the Bluefin ID.
-app.delete('/subscription/:bfid', async function(req, res) {
-  const bfId = req.params.bfid
+app.delete('/subscription/:token', async function(req, res) {
+  const token = req.params.token
 
-  if (!bfId) {
-    return res.status(400).json({ 'message': 'Missing Bluefin ID for cancelling subscription.' })
+  if (!token) {
+    return res.status(400).json({ 'message': 'Missing Bluefin token for cancelling subscription.' })
   }
 
   try {
-    await db.run('DELETE FROM subscriptions WHERE bfid = ?',
-      [bfId])
+    await db.run('DELETE FROM subscriptions WHERE token = ?',
+      [token])
 
     return res.status(204).json()
   } catch (err) {
     console.log('Error deleting the subscription: ', err)
   }
-});
+})
 
-(async () => {
+;(async () => {
   try {
     db = await open({
       filename: './db/subscriptions_database.db',
@@ -303,7 +320,6 @@ app.delete('/subscription/:bfid', async function(req, res) {
             bfid TEXT NOT NULL,
             card_number TEXT NOT NULL,
             card_expiration TEXT NOT NULL,
-            token_name TEXT NOT NULL,
             type_subscription TEXT NOT NULL,
             amount TEXT NOT NULL
         )

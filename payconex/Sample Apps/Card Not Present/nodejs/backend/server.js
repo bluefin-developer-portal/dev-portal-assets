@@ -21,9 +21,11 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-// console.log('ACCOUNT_ID: ', ACCOUNT_ID)
-// console.log('BASIC_TOKEN: ', BASIC_TOKEN)
-// console.log('IFRAME_CONFIG_ID: ', IFRAME_CONFIG_ID)
+if(process.env.sample_app_debug == 1) {
+  console.log('ACCOUNT_ID: ', ACCOUNT_ID)
+  console.log('BASIC_TOKEN: ', BASIC_TOKEN)
+  console.log('IFRAME_CONFIG_ID: ', IFRAME_CONFIG_ID)
+}
 
 // List all subscriptions that belong to that user
 app.get('/subscription', async function(req, res) {
@@ -155,6 +157,10 @@ app.post('/generate-bearer-token', async function generateBearerToken(req, res) 
       "shippingIndicator": "BILLING_ADDRESS"
     }
   }
+  
+  if(process.env.sample_app_debug == 1) {
+    console.log('iframeInstanceReqBody', iframeInstanceReqBody)
+  }
 
   try {
   
@@ -245,7 +251,9 @@ app.post('/subscription', async function(req, res) {
       amount
     }
     
-    // console.log('tokenizedCardData', tokenizedCardData)
+    if(process.env.sample_app_debug == 1) {
+      console.log('tokenizedCardData', tokenizedCardData)
+    }
 
     await db.run(
       'INSERT INTO subscriptions(bfid, token, card_number, card_expiration, type_subscription, amount)'

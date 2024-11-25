@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 
 async function getReport() {
-  const response = await fetch('http://127.0.0.1:8000/report', {
+  const response = await fetch('/api/report', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -41,7 +41,7 @@ function Table() {
       setRows(differenceBy(rows, selectedRows, 'transactionId'));
 
       selectedRows.forEach(row => {
-        fetch(`http://127.0.0.1:8000/transaction/${row.transactionId}`, {
+        fetch(`/api/transaction/${row.transactionId}`, {
           method: 'DELETE',
           headers: {
             'Content-Type': 'application/json'
@@ -66,7 +66,7 @@ function Table() {
 
         const body = { transactionId: row.transactionId }
 
-        fetch('http://127.0.0.1:8000/capture-transaction', {
+        fetch('/api/capture-transaction', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -93,7 +93,7 @@ function Table() {
 
         const body = { transactionId: row.transactionId }
 
-        fetch('http://127.0.0.1:8000/refund-transaction', {
+        fetch('/api/refund-transaction', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'

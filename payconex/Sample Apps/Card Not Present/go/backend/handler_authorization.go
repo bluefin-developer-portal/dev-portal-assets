@@ -37,7 +37,7 @@ func (app *App) handlerProcessAuthorization(w http.ResponseWriter, r *http.Reque
 	}
 
 	transactionAuthRequestBody := map[string]any{
-		"token":      params.PayConexToken,
+		"bfTokenReference": params.PayConexToken,
 		"posProfile": "ECOMMERCE",
 		"amounts": map[string]string{
 			"total":    params.Amount,

@@ -1,6 +1,6 @@
 module github.com/voxgig/bluefin
 
-go 1.22.5
+go 1.23
 
 require (
 	github.com/go-chi/chi v1.5.5
@@ -8,6 +8,7 @@ require (
 	github.com/go-playground/validator/v10 v10.22.0
 	github.com/joho/godotenv v1.5.1
 	github.com/mattn/go-sqlite3 v1.14.22
+	github.com/google/uuid v1.6.0
 )
 
 require (

@@ -1,7 +1,7 @@
 ## Build and Run
 
 ```bash
-go get github.com/voxgig/bluefin && go build && ./bluefingo build && ./bluefin
+go get github.com/bluefin-developer-portal/dev-portal-assets/bluefin && go build && ./bluefin
 ```
 
 

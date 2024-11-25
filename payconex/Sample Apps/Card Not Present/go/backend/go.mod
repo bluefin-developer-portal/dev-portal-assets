@@ -1,4 +1,4 @@
-module github.com/voxgig/bluefin
+module github.com/bluefin-developer-portal/dev-portal-assets/bluefin
 
 go 1.23
 

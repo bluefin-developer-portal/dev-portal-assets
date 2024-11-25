@@ -4,6 +4,8 @@ import fetch from 'node-fetch'
 import cors from 'cors'
 import sqlite3 from 'sqlite3'
 import { open } from 'sqlite'
+import { v4 as uuidv4 } from 'uuid'
+
 
 const PORT = process.env.PORT || 3000
 // PayConex account ID number
@@ -11,7 +13,6 @@ const ACCOUNT_ID = process.env.ACCOUNT_ID
 // Base64 encoding of PayConex API Key id:secret
 const BASIC_TOKEN = process.env.BASIC_TOKEN
 const ENVIRONMENT_URL = 'https://api-cert.payconex.net'
-const TEMPLATE_REFERENCE = process.env.TEMPLATE_REFERENCE
 const IFRAME_CONFIG_ID = process.env.IFRAME_CONFIG_ID
 
 let db
@@ -106,12 +107,13 @@ app.post('/generate-bearer-token', async function generateBearerToken(req, res) 
   }
   
   
-
+  const instance_merchant_reference = uuidv4()
+  
   const iframeInstanceReqBody = {
     "label": "Card only iframe instance",
     "language": "ENGLISH",
     "amount": amount,
-    "reference": TEMPLATE_REFERENCE,
+    "reference": instance_merchant_reference,
     "timeout": 800,
     "allowedPaymentMethods": [
       "CARD",

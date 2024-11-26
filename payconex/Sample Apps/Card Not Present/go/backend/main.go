@@ -23,12 +23,12 @@ type Transaction struct {
 }
 
 func main() {
-  err := os.Mkdir("./db", 0777)
-  if err != nil {
-    if !os.IsExist(err) {
-      log.Println(err)
-    }
-  }
+	err := os.Mkdir("./db", 0777)
+	if err != nil {
+		if !os.IsExist(err) {
+			log.Fatal(err)
+		}
+	}
 
 	db, err := sql.Open("sqlite3", "./db/transactions.db")
 	// Confirm a successful connection.

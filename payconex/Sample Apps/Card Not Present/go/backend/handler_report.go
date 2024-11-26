@@ -24,7 +24,7 @@ func (app *App) handlerGetReport(w http.ResponseWriter, r *http.Request) {
 			http.Error(w, "Something wrong. Please try again later.", http.StatusInternalServerError)
 			return
 		}
-		
+
 		var transaction_meta map[string]any
 		if err = json.Unmarshal([]byte(transactionDetails), &transaction_meta); err != nil {
 			log.Printf("Error parsing transaction details: %v", err)
@@ -32,7 +32,7 @@ func (app *App) handlerGetReport(w http.ResponseWriter, r *http.Request) {
 			return
 		}
 		report = append(report, transaction_meta)
-		
+
 	}
 
 	jsonData, err := json.Marshal(report)

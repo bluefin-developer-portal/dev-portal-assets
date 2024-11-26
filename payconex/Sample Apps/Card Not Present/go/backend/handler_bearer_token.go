@@ -10,6 +10,7 @@ import (
 	"os"
 
 	"github.com/go-playground/validator/v10"
+	"github.com/google/uuid"
 )
 
 func handlerGenerateBearerToken(w http.ResponseWriter, r *http.Request) {
@@ -22,8 +23,8 @@ func handlerGenerateBearerToken(w http.ResponseWriter, r *http.Request) {
 		BearerToken string `json:"bearerToken"`
 	}
 
-	accountId, basicToken, templateReference, environmentUrl := os.Getenv("ACCOUNT_ID"),
-		os.Getenv("BASIC_TOKEN"), os.Getenv("TEMPLATE_REFERENCE"), "https://api-cert.payconex.net"
+	accountId, basicToken, environmentUrl := os.Getenv("ACCOUNT_ID"),
+		os.Getenv("BASIC_TOKEN"), "https://api-cert.payconex.net"
 
 	decoder, params := json.NewDecoder(r.Body), BearerHandlerRequestBody{}
 	if err := decoder.Decode(&params); err != nil {
@@ -40,10 +41,46 @@ func handlerGenerateBearerToken(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	instance_merchant_reference := uuid.New()
+
 	instanceRequestBody := map[string]any{
-		"label":     "my-instance-2",
+		"label":     "Card only iframe instance",
 		"amount":    params.Amount,
-		"reference": templateReference,
+		"reference": instance_merchant_reference,
+		"language":  "ENGLISH",
+		"timeout":   800,
+		"allowedPaymentMethods": [2]string{
+			"CARD",
+			"ACH",
+		},
+		"achSettings": map[string]any{
+			"billingAddress": map[string]any{
+				"address1": "required",
+				"address2": "optional",
+				"city":     "required",
+				"state":    "required",
+				"zip":      "required",
+			},
+			"capturePhone":           "omit",
+			"captureEmail":           "omit",
+			"captureShippingAddress": false,
+		},
+		"cardSettings": map[string]any{
+			"cvv": "required",
+			"billingAddress": map[string]any{
+				"address1": "required",
+				"address2": "optional",
+				"city":     "required",
+				"state":    "required",
+				"zip":      "required",
+			},
+			"capturePhone":           "omit",
+			"threeDSecure":           "required",
+			"captureEmail":           "omit",
+			"captureShippingAddress": false,
+		},
+		"savePaymentOption": "required",
+		"currency":          "USD",
 		"threeDSecureInitSettings": map[string]string{
 			"transactionType":                "GOODS_SERVICE_PURCHASE",
 			"deliveryTimeFrame":              "ELECTRONIC_DELIVERY",

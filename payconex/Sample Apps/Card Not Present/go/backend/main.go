@@ -23,6 +23,13 @@ type Transaction struct {
 }
 
 func main() {
+	err := os.Mkdir("./db", 0777)
+	if err != nil {
+		if !os.IsExist(err) {
+			log.Fatal(err)
+		}
+	}
+
 	db, err := sql.Open("sqlite3", "./db/transactions.db")
 	// Confirm a successful connection.
 	if err := db.Ping(); err != nil {
@@ -64,16 +71,16 @@ func main() {
 		MaxAge:           300,
 	}))
 
-	router.Get("/", handlerHealth)
-	router.Get("/report", app.handlerGetReport)
-	router.Get("/config", app.handlerGetCheckoutConfigs)
-	router.Post("/authorize-transaction", app.handlerProcessAuthorization)
-	router.Post("/capture-transaction", app.handlerProcessCapture)
-	router.Post("/refund-transaction", app.handlerProcessRefund)
-	router.Post("/config", app.handlerGenerateConfig)
-	router.Post("/generate-bearer-token", handlerGenerateBearerToken)
-	router.Patch("/transaction/{transactionId}", app.handlerProcessUpdate)
-	router.Delete("/transaction/{transactionId}", app.handlerDeleteTransaction)
+	router.Get("/api", handlerHealth)
+	router.Get("/api/report", app.handlerGetReport)
+	router.Get("/api/config", app.handlerGetCheckoutConfigs)
+	router.Post("/api/authorize-transaction", app.handlerProcessAuthorization)
+	router.Post("/api/capture-transaction", app.handlerProcessCapture)
+	router.Post("/api/refund-transaction", app.handlerProcessRefund)
+	router.Post("/api/config", app.handlerGenerateConfig)
+	router.Post("/api/generate-bearer-token", handlerGenerateBearerToken)
+	router.Patch("/api/transaction/{transactionId}", app.handlerProcessUpdate)
+	router.Delete("/api/transaction/{transactionId}", app.handlerDeleteTransaction)
 
 	godotenv.Load()
 	port := os.Getenv("PORT")

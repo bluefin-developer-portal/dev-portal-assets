@@ -1,5 +1,5 @@
 async function getReport() {
-  const response = await fetch('http://127.0.0.1:8000/report', {
+  const response = await fetch('/api/report', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -10,7 +10,7 @@ async function getReport() {
 }
 
 async function getConfigs() {
-  const response = await fetch('http://127.0.0.1:8000/config', {
+  const response = await fetch('/api/config', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ async function getConfigs() {
 async function generateBearerToken(amount, resourceId) {
   const body = { amount, resourceId }
 
-  const response = await fetch('http://127.0.0.1:8000/generate-bearer-token', {
+  const response = await fetch('/api/generate-bearer-token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -37,7 +37,7 @@ async function generateBearerToken(amount, resourceId) {
 async function authorizeTransaction(amount, payConexToken) {
   const body = { amount, payConexToken }
 
-  const response = await fetch('http://127.0.0.1:8000/authorize-transaction', {
+  const response = await fetch('/api/authorize-transaction', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ async function authorizeTransaction(amount, payConexToken) {
 async function captureTransaction(transactionId) {
   const body = { transactionId }
 
-  const response = await fetch('http://127.0.0.1:8000/capture-transaction', {
+  const response = await fetch('/api/capture-transaction', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -65,7 +65,7 @@ async function captureTransaction(transactionId) {
 async function refundTransaction(transactionId) {
   const body = { transactionId }
 
-  const response = await fetch('http://127.0.0.1:8000/refund-transaction', {
+  const response = await fetch('/api/refund-transaction', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -77,7 +77,7 @@ async function refundTransaction(transactionId) {
 }
 
 async function getReport() {
-  const response = await fetch('http://127.0.0.1:8000/report', {
+  const response = await fetch('/api/report', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -88,7 +88,7 @@ async function getReport() {
 }
 
 async function deleteTransaction(transactionId) {
-  return fetch(`http://127.0.0.1:8000/transaction/${transactionId}`, {
+  return fetch(`/api/transaction/${transactionId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -110,7 +110,7 @@ const callbacks = {
   },
   checkoutComplete: function(data) {
     console.log('Checkout complete:', data);
-    authorizeTransaction(amount, data.token).then(() => window.location.reload())
+    authorizeTransaction(amount, data.bfTokenReference).then(() => window.location.reload())
   },
   error: function(data) {
     console.log('Error:', data);
@@ -228,9 +228,15 @@ getReport().then(transactionList => {
     }
 
     return getConfigs().then(configs => {
+      if(configs == null) {
+        throw new Error("No iframe configurations found in the database")
+      }
+      
       generateBearerToken(amount, configs[0].resourceId).then(generateBearerTokenResponse => {
+        
+        
         const bearerToken = generateBearerTokenResponse.bearerToken
-        window.IframeV2.init(iframeConfig, bearerToken, callbacks, 'https://checkout-cert.payconex.net')
+        window.IframeV2.init(iframeConfig, bearerToken, callbacks, null, 'https://checkout-cert.payconex.net')
         checkoutForm.style.display = 'none'
         transactionDiv.style.display = 'none'
         reportSection.style.display = 'none'

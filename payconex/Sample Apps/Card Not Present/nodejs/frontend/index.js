@@ -1,7 +1,7 @@
 async function generateBearerToken(amount) {
   const body = { amount }
 
-  const response = await fetch('http://127.0.0.1:3000/generate-bearer-token', {
+  const response = await fetch('/generate-bearer-token', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -15,7 +15,7 @@ async function generateBearerToken(amount) {
 async function createSubscription(payConexToken, typeSubscription, amount) {
   const body = { payConexToken, typeSubscription, amount }
 
-  const response = await fetch('http://127.0.0.1:3000/subscription', {
+  const response = await fetch('/subscription', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -27,7 +27,7 @@ async function createSubscription(payConexToken, typeSubscription, amount) {
 }
 
 async function cancelSubscription(subscriptionId) {
-  return fetch(`http://127.0.0.1:3000/subscription/${subscriptionId}`, {
+  return fetch(`/subscription/${subscriptionId}`, {
     method: 'DELETE',
     headers: {
       'Content-Type': 'application/json'
@@ -36,7 +36,7 @@ async function cancelSubscription(subscriptionId) {
 }
 
 async function getSubscriptions() {
-  const response = await fetch('http://127.0.0.1:3000/subscription', {
+  const response = await fetch('/subscription', {
     method: 'GET',
     headers: {
       'Content-Type': 'application/json'
@@ -61,7 +61,7 @@ const callbacks = {
   },
   checkoutComplete: function(data) {
     console.log('Checkout complete:', data);
-    createSubscription(data.token, typeSubscription, amount).then(() => window.location.reload())
+    createSubscription(data.bfTokenReference, typeSubscription, amount).then(() => window.location.reload())
   },
   error: function(data) {
     console.log('Error:', data);
@@ -77,7 +77,7 @@ getSubscriptions().then(subscriptionsResponse => {
 
   subscriptionList.forEach(subscription => {
     const form = document.createElement("form");
-    form.setAttribute("id", subscription.bluefinId)
+    form.setAttribute("id", subscription.token)
 
     const title = document.createElement('h3')
     title.innerHTML = 'Subscription Data'
@@ -92,7 +92,7 @@ getSubscriptions().then(subscriptionsResponse => {
     cancelButton.textContent = 'CANCEL';
 
     cancelButton.addEventListener('click', () => {
-      cancelSubscription(subscription.bluefinId)
+      cancelSubscription(subscription.token)
     });
 
     form.appendChild(title)
@@ -117,7 +117,7 @@ getSubscriptions().then(subscriptionsResponse => {
 
     return generateBearerToken(amount).then(generateBearerTokenResponse => {
       const bearerToken = generateBearerTokenResponse.bearerToken
-      window.IframeV2.init(iframeConfig, bearerToken, callbacks, 'https://checkout-cert.payconex.net')
+      window.IframeV2.init(iframeConfig, bearerToken, callbacks, null, 'https://checkout-cert.payconex.net')
       checkoutForm.style.display = 'none'
       subscriptionDiv.style.display = 'none'
     })

@@ -7,12 +7,7 @@ import (
 )
 
 func (app *App) handlerGetReport(w http.ResponseWriter, r *http.Request) {
-	type TransactionDetails struct {
-		Details string
-	}
-
-	var transactionDetailsList []TransactionDetails
-	var reportList []map[string]any
+	var report []map[string]any
 
 	detailsRows, err := app.DB.Query("SELECT details FROM transactions")
 	if err != nil {
@@ -23,26 +18,24 @@ func (app *App) handlerGetReport(w http.ResponseWriter, r *http.Request) {
 	defer detailsRows.Close()
 
 	for detailsRows.Next() {
-		transactionDetails := TransactionDetails{}
-		if err = detailsRows.Scan(&transactionDetails.Details); err != nil {
+		transactionDetails := ""
+		if err = detailsRows.Scan(&transactionDetails); err != nil {
 			log.Printf("Error scanning details value: %v", err)
 			http.Error(w, "Something wrong. Please try again later.", http.StatusInternalServerError)
 			return
 		}
-		transactionDetailsList = append(transactionDetailsList, transactionDetails)
-	}
 
-	for _, transaction := range transactionDetailsList {
-		var report map[string]any
-		if err = json.Unmarshal([]byte(transaction.Details), &report); err != nil {
+		var transaction_meta map[string]any
+		if err = json.Unmarshal([]byte(transactionDetails), &transaction_meta); err != nil {
 			log.Printf("Error parsing transaction details: %v", err)
 			http.Error(w, "Something wrong. Please try again later.", http.StatusInternalServerError)
 			return
 		}
-		reportList = append(reportList, report)
+		report = append(report, transaction_meta)
+
 	}
 
-	jsonData, err := json.Marshal(reportList)
+	jsonData, err := json.Marshal(report)
 	if err != nil {
 		log.Printf("Error encoding report list: %v", err)
 		http.Error(w, "Something wrong. Please try again later.", http.StatusInternalServerError)

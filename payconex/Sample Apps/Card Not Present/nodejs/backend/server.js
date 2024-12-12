@@ -274,7 +274,7 @@ app.post('/subscription', async function(req, res) {
   }
 })
 
-// ISV implements the recurring payment solution (the interval) to trigger this endpoint and, thus, the recurring payment. PayConex API V4 will soon support the scheduled recurring payments feature.
+// ISV implements the recurring payment solution (the interval) to trigger this endpoint and, thus, the recurring payment. PayConex V4 API V4 does not yet support the scheduled recurring payments feature. However, This feature can be set via the PayConex v3.8 API SLAPI or from the PayConex® Portal via UI tools -> RECURRING BILLING.
 app.post('/recurring-payment', async function(req, res) {
   const { token } = req.body
 

@@ -245,8 +245,8 @@ app.post('/subscription', async function(req, res) {
     const tokenizedCardData = {
       bfid: shieldConexToken.bfid,
       token: subsequentTransactionToken,
-      cardNumber: shieldConexToken.tokenCardNumber,
-      cardExpiration: shieldConexToken.tokenCardExpiration,
+      cardNumber: shieldConexToken.cardNumber,
+      cardExpiration: shieldConexToken.cardExpiration,
       typeSubscription,
       amount
     }

@@ -1,0 +1,150 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Test 3DS SDK Page</title>
+        
+        <link rel="stylesheet" href="https://unpkg.com/mustard-ui@latest/dist/css/mustard-ui.min.css">
+
+
+        
+        <script src="https://cert.payconex.net/bluefin3DSSDK/bluefin3DS-SDK.js"></script>
+
+        <!-- Loading local JavaScript to use the 3DS SDK -->
+        <script type="text/javascript" src="lib/js/3ds_sdk.js"></script>
+
+    </head>
+
+<main id="site-main">
+        <div class="row">
+                <div class="col col-sm-3"></div>
+                <div class="col col-sm-6" style="overflow:hidden;">
+                    <div class="col col-sm-12">
+                        <fieldset>
+                            <legend>Contact Information</legend>
+                            <div class="form-control-group">
+                                <div class="form-control">
+                                    <label>First Name</label>
+                                    <input type="text" id="first_name" placeholder="First Name" value="Jane">
+                                </div>
+                                        
+                                <div class="form-control">
+                                    <label>Last Name</label>
+                                    <input type="text" id="last_name" placeholder="Last Name" value="Smith">
+                                </div>
+                            </div>
+
+                            <label>Phone</label>
+                            <input type="text" id="phone" placeholder="(555)555-55555" value="+5555555555">
+
+                            <label>E-Mail</label>
+                            <input type="text" id="email" placeholder="youraddress@domain.com" value="janesmith@example.com">
+                        </fieldset>
+                    </div>
+
+                    <div class="col col-sm-12">
+                        <fieldset>
+                            <legend>Billing Information</legend>
+                            
+                            <label>Street Address</label>
+                            <input type="text" id="street_address1" placeholder="123 N. Main St" value="123 N Main St">
+                            
+                            <label>Street Address 2</label>
+                            <input type="text" id="street_address2" placeholder="West Side" value="West Side">
+                            
+                            <div class="form-control-group">
+                                <div class="form-control grow-2x">
+                                    <label>City</label>
+                                    <input type="text" id="city" placeholder="Enter City" value="Atlanta">
+                                </div>
+                                    
+                                <div class="form-control">
+                                    <label>State</label>
+                                    <input type="text" id="state" placeholder="Enter State" value="GA">
+                                </div>
+                            </div>
+
+                            <label>Zip</label>
+                            <input type="text" id="zip" placeholder="Enter Zip Code" value="12345">
+                            <label>Country</label>
+                            <select id="country">
+                                <option value="USA">USA</option>
+                                <option value="United States">United States</option>
+                                <option value="UNITED STATES">UNITED STATES</option>
+                                <option value="US">US</option>
+                                <option value="America">America</option>
+                                <option value="AMERICA">AMERICA</option>
+                            </select>
+                            <label>Company</label>
+                            <input type="text" id="company" placeholder="Acme Inc." value="Acme Inc.">
+                        </fieldset>
+                    </div>
+                  
+                    <div class="col col-sm-12">
+                        <!-- Merchant's iFrame for the challenge pop-up if requested -->
+                        <iframe id="my_iframe_d"> </iframe>
+                        
+                        <fieldset>
+                            <legend>Card Information</legend>
+                            <label>Card Number</label>
+                            <input type="text" id="card_number" placeholder="4444333322221111" value="4124939999999990">
+                            
+                            <label>CVV</label>
+                            <input type="text" id="_cvv" placeholder="123" value="123">
+                            
+                            <label>Card Expiry</label>
+                            <input type="text" id="card_expiry" placeholder="1225" value="1225">
+                        </fieldset>
+                        
+                       
+                        
+                                <div class="col col-sm-12">
+                        <label>Transaction Amount</label>
+                        <input type="text" id="transaction_amount" placeholder="Enter Transaction Amount" value="1.00">
+                        
+                        <div class="col col-sm-12 align-right">
+                        <button class="button " id="pay-button" onclick="submitPayment();">Submit</button>
+                        </div>
+                        </div>  
+                    </div>
+
+                    
+                    <div class="col col-sm-12">
+                        <h6>Bluefin 3DS SDK Response:</h6>
+                        <pre class="data-json">
+                        <code class="data-json" id="3ds-response">
+                        
+                        </code>
+                        </pre>
+
+                        <h6>PayConex Request Header/Body:</h6>
+                        <pre class="data-json">
+                        <code class="data-json" id="request-header">
+                        
+                        </code>
+                        <code class="data-json" id="request-body">
+                        
+                            </code>
+                        </pre>
+
+                        <h6>PayConex Response:</h6>
+                        <pre class="data-json">
+                        <code class="data-json" id="payconex-response">
+                        
+                        </code>
+                        </pre>
+
+                        <h6>PayConex cURL Example:</h6>
+                        <pre class="data-json">
+                        <code class="data-json" id="curl-example">
+                        
+                        </code>
+                        </pre>
+                    </div>
+                </div>
+                <div class="col col-sm-3"></div>
+            </div>
+    
+</main>
+</body>
+</html>

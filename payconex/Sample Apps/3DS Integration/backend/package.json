@@ -1,0 +1,19 @@
+{
+  "name": "3ds-integration-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "local": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "description": "",
+  "dependencies": {
+    "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}

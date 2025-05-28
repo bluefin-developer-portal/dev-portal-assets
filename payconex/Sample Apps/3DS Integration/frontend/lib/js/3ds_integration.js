@@ -43,7 +43,6 @@ class threeDSIntegration {
     this.authentication_data = authentication_data
 
     this.card_init_res = null
-    this.acs_done = false
 
     this.acs_count = 0
     this.threeds_status_count = 0
@@ -94,14 +93,16 @@ class threeDSIntegration {
       if(threeDSdata.status == "PROCESS_DONE") {
         console.log("DEBUG 3DS successfully authenticated", threeDSdata)
         // Authorize and process transaction with 3DS data or Proceed with any other requirements
+        clearInterval(threeds_status_id)
         document.getElementById('3ds-response').innerHTML = JSON.stringify(threeDSdata, null, 2);
-        return clearInterval(threeds_status_id)
+        return
       }
       this.threeds_status_count++
       if(this.threeds_status_count == this.threeDS_STATUS_MAX_ATTEMPT) {
+        clearInterval(threeds_status_id)
         // Render the iframe with challenge expired.
         injectIframeHTML("3ds_challenge_iframe", "<p>3DS Challenge Expired</p>")
-        return clearInterval(threeds_status_id)
+        return 
       }
     }, this.STATUS_RETRY_TIMEOUT) // User-defined interval value. Check every 1 second in this case
 
@@ -117,21 +118,24 @@ class threeDSIntegration {
 
       console.log('DEBUG ACS status res: ', res)
 
-      if(res.status == 200 && !this.acs_done) {
+      if(res.status == 200) {
         console.log("DEBUG Proceeding with Browser Authentication...")
-        this.acs_done = true
+        
+        clearInterval(acs_status_id)
+        
         await this.browser_authentication({
           threeDSecureId: this.card_init_res.threeDSecureId,
           ...this.authentication_data
         })
-        return clearInterval(acs_status_id)
+        return 
       }
       // Stop after 10 seconds
       this.acs_count++
       if(this.acs_count == this.ACS_MAX_ATTEMPT) {
         // Render the iframe with ACS Method expired.
+        clearInterval(acs_status_id)
         injectIframeHTML("acs_iframe_id", "<p>ACS Method Expired</p>")
-        return clearInterval(acs_status_id)
+        return
       }
     }, this.ACS_RETRY_TIMEOUT) // User-defined interval value. Check every 1 second in this case
 

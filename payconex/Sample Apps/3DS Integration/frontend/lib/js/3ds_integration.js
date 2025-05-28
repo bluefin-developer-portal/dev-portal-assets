@@ -72,26 +72,24 @@ class threeDSIntegration {
 
     this.card_init_res = await res.json()
 
-    console.log('DEBUG card_res:', this.card_init_res)
+    console.debug('DEBUG card_res:', this.card_init_res)
   }
 
   async threeDStatus() {
 
     const threeds_status_id = setInterval(async () => {
+      const { threeDSecureId } = this.card_init_res
     
-      let res = await fetch('/3ds-status', {
-        method: "POST",
+      let res = await fetch(`/3ds-status/${threeDSecureId}`, {
+        method: "GET",
         headers: {
           "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          threeDSecureId: this.card_init_res.threeDSecureId
-        })
+        }
       })
 
       let threeDSdata = await res.json()
       if(threeDSdata.status == "PROCESS_DONE") {
-        console.log("DEBUG 3DS successfully authenticated", threeDSdata)
+        console.debug("DEBUG 3DS successfully authenticated", threeDSdata)
         // Authorize and process transaction with 3DS data or Proceed with any other requirements
         clearInterval(threeds_status_id)
         document.getElementById('3ds-response').innerHTML = JSON.stringify(threeDSdata, null, 2);
@@ -116,10 +114,10 @@ class threeDSIntegration {
         method: "GET"
       })
 
-      console.log('DEBUG ACS status res: ', res)
+      console.debug('DEBUG ACS status res: ', res)
 
       if(res.status == 200) {
-        console.log("DEBUG Proceeding with Browser Authentication...")
+        console.debug("DEBUG Proceeding with Browser Authentication...")
         
         clearInterval(acs_status_id)
         
@@ -165,7 +163,7 @@ class threeDSIntegration {
 
   async browser_authentication(authentication_data) {
     authentication_data.card.paymentDetailsReference = this.card_init_res.paymentDetailsReference
-    console.log("DEBUG Browser Authentication Data:", authentication_data)
+    console.debug("DEBUG Browser Authentication Data:", authentication_data)
     let res = await fetch('/browser-authenticate', {
       method: 'POST',
       headers: {
@@ -177,11 +175,11 @@ class threeDSIntegration {
 
     let res_body = await res.json()
 
-    console.log("DEBUG BROWSER AUTHENTICATION RES:", res_body)
+    console.debug("DEBUG BROWSER AUTHENTICATION RES:", res_body)
 
     if(res_body.status == "CHALLENGE_REQUIRED") {
       let challenge_request_form = await this.#request_challenge(res_body)
-      console.log("DEBUG REQUEST CHALLENGE FORM:", challenge_request_form)
+      console.debug("DEBUG REQUEST CHALLENGE FORM:", challenge_request_form)
       injectIframeHTML("3ds_challenge_iframe", challenge_request_form)
 
     }

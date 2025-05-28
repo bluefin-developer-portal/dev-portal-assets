@@ -163,7 +163,9 @@ class threeDSIntegration {
 
   async browser_authentication(authentication_data) {
     authentication_data.card.paymentDetailsReference = this.card_init_res.paymentDetailsReference
+    
     console.debug("DEBUG Browser Authentication Data:", authentication_data)
+    
     let res = await fetch('/browser-authenticate', {
       method: 'POST',
       headers: {

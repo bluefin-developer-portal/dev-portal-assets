@@ -89,9 +89,9 @@ app.post('/browser-authenticate', async function(req, res) {
   return res.json(await card_res.json())
 })
 
-app.post('/3ds-status', async function(req, res) {
-  let body = req.body
-  let threeDSecureId = body.threeDSecureId
+app.get('/3ds-status/:id', async function(req, res) {
+  let params = req.params
+  let threeDSecureId = params.id
   const status_URL = `${URL}/api/v4/accounts/${ACCOUNT_ID}/3DS/${threeDSecureId}/status`
   let status_res = await fetch(status_URL, {
     method: "GET",

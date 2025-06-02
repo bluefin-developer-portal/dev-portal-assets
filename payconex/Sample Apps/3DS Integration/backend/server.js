@@ -4,8 +4,8 @@ const express = require('express')
 const PORT = process.env.PORT || 3000
 // PayConex account ID number
 const ACCOUNT_ID = process.env.ACCOUNT_ID
-// See: https://developers.bluefin.com/payconex/docs/server-side-3ds-integration#generating-bearer-token
-const BEARER_TOKEN = process.env.PAYCONEX_BEARER_TOKEN
+// See: https://developers.bluefin.com/payconex/docs/server-side-3ds-integration#creating-api-key
+const API_KEY = process.env.PAYCONEX_API_KEY
 const URL = 'https://api-cert.payconex.net'
 
 const app = express()
@@ -13,7 +13,7 @@ app.use(express.json())
 
 if(process.env.SAMPLE_APP_DEBUG == 1) {
   console.log('ACCOUNT_ID: ', ACCOUNT_ID)
-  console.log('BEARER_TOKEN: ', BEARER_TOKEN)
+  console.log('API_KEY: ', API_KEY)
 }
 
 app.post('/init-card', async function(req, res) {
@@ -22,7 +22,7 @@ app.post('/init-card', async function(req, res) {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "Authorization": `Bearer ${BEARER_TOKEN}`,
+      "Authorization": `Basic ${API_KEY}`,
     },
     body: JSON.stringify(body),
   })
@@ -80,7 +80,7 @@ app.post('/browser-authenticate', async function(req, res) {
     method: "POST",
     headers: {
       "content-type": "application/json",
-      "Authorization": `Bearer ${BEARER_TOKEN}`,
+      "Authorization": `Basic ${API_KEY}`,
     },
     body: JSON.stringify(body),
   })
@@ -96,7 +96,7 @@ app.get('/3ds-status/:id', async function(req, res) {
   let status_res = await fetch(status_URL, {
     method: "GET",
     headers: {
-      Authorization: `Bearer ${BEARER_TOKEN}`,
+      Authorization: `Basic ${API_KEY}`,
     }
   })
   let threeDSdata = await status_res.json()

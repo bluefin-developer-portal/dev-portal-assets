@@ -1,0 +1,714 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "/schemas/gateway-template",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "proxy",
+    "requestActions"
+  ],
+  "properties": {
+    "proxy": {
+      "$ref": "#/$defs/proxy"
+    },
+    "requestActions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {
+        "$ref": "#/$defs/request-action"
+      }
+    },
+    "responseActions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/response-action"
+      }
+    },
+    "detailedAuditEndDate": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "$defs": {
+    "proxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "method",
+        "target",
+        "authorization"
+      ],
+      "properties": {
+        "method": {
+          "enum": [
+            "get",
+            "post",
+            "put",
+            "patch",
+            "delete"
+          ]
+        },
+        "target": {
+          "type": "string",
+          "pattern": "^[hH][tT][tT][pP][sS]?:\\/\\/(?![lL][oO][cC][aA][lL][hH][oO][sS][tT]|[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*|.*[cC][aA][rR][dD][cC][oO][nN][eE][xX]\\.[lL][oO][cC][aA][lL])(?:[^\\x00-\\x20\"'\u003C\u003E%\\\\^`{|}]|%[0-9a-fA-F]{2}|\\{[+#./;?&=,!@|]?(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?(?:,(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?)*\\})*$",
+          "maxLength": 4096
+        },
+        "authorization": {
+          "$ref": "#/$defs/proxy-authorization"
+        },
+        "logSettings": {
+          "$ref": "#/$defs/log-settings"
+        }
+      }
+    },
+    "proxy-authorization": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "default": "passthrough",
+          "enum": [
+            "passthrough",
+            "basic",
+            "hmac",
+            "hmac-vpc"
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/authorization-passthrough"
+        },
+        {
+          "$ref": "#/$defs/authorization-basic"
+        },
+        {
+          "$ref": "#/$defs/authorization-hmac"
+        },
+        {
+          "$ref": "#/$defs/authorization-hmac-vpc"
+        }
+      ]
+    },
+    "request-action-authorization": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "default": "passthrough",
+          "enum": [
+            "passthrough",
+            "basic",
+            "hmac"
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/authorization-passthrough"
+        },
+        {
+          "$ref": "#/$defs/authorization-basic"
+        },
+        {
+          "$ref": "#/$defs/authorization-hmac"
+        }
+      ]
+    },
+    "response-action-authorization": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "default": "passthrough",
+          "enum": [
+            "passthrough",
+            "basic"
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/authorization-passthrough"
+        },
+        {
+          "$ref": "#/$defs/authorization-basic"
+        }
+      ]
+    },
+    "authorization-passthrough": {
+      "type": "object",
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "const": "passthrough"
+        },
+        "headerName": {
+          "type": "string",
+          "pattern": "^[a-z0-9-]+$"
+        }
+      }
+    },
+    "authorization-basic": {
+      "type": "object",
+      "required": [
+        "type",
+        "username",
+        "password"
+      ],
+      "properties": {
+        "type": {
+          "const": "basic"
+        },
+        "username": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "password": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        }
+      }
+    },
+    "authorization-hmac": {
+      "type": "object",
+      "required": [
+        "type",
+        "username",
+        "secret"
+      ],
+      "properties": {
+        "type": {
+          "const": "hmac"
+        },
+        "username": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "secret": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        }
+      }
+    },
+    "authorization-hmac-vpc": {
+      "type": "object",
+      "required": [
+        "type",
+        "keyId",
+        "secretKey"
+      ],
+      "properties": {
+        "type": {
+          "const": "hmac-vpc"
+        },
+        "keyId": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "secretKey": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "signableHeaders": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[\\s\\S]*$"
+          }
+        }
+      }
+    },
+    "transformation-item": {
+      "type": "object",
+      "required": [
+        "transformationSource",
+        "transformationType",
+        "transformationPath"
+      ],
+      "properties": {
+        "transformationSource": {
+          "enum": [
+            "body",
+            "header",
+            "query",
+            "variable"
+          ]
+        },
+        "transformationPath": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "instructionType": {
+          "enum": [
+            "substitution",
+            "passthrough"
+          ],
+          "default": "substitution"
+        }
+      },
+      "discriminator": {
+        "propertyName": "transformationSource"
+      },
+      "oneOf": [
+        {
+          "required": [
+            "transformationType"
+          ],
+          "properties": {
+            "transformationSource": {
+              "const": "body"
+            },
+            "transformationType": {
+              "enum": [
+                "xpath",
+                "jsonpath",
+                "regex"
+              ]
+            },
+            "referenceName": {
+              "type": "string",
+              "pattern": "^[\\s\\S]*$"
+            }
+          }
+        },
+        {
+          "required": [
+            "transformationType"
+          ],
+          "properties": {
+            "transformationSource": {
+              "const": "header"
+            },
+            "transformationType": {
+              "default": "key",
+              "enum": [
+                "key"
+              ]
+            },
+            "referenceName": {
+              "type": "string",
+              "pattern": "^[\\s\\S]*$"
+            }
+          }
+        },
+        {
+          "required": [
+            "transformationType"
+          ],
+          "properties": {
+            "transformationSource": {
+              "const": "query"
+            },
+            "transformationType": {
+              "default": "key",
+              "enum": [
+                "key"
+              ]
+            },
+            "referenceName": {
+              "type": "string",
+              "pattern": "^[\\s\\S]*$"
+            }
+          }
+        },
+        {
+          "required": [
+            "transformationType"
+          ],
+          "properties": {
+            "transformationSource": {
+              "const": "variable"
+            },
+            "transformationType": {
+              "default": "key",
+              "enum": [
+                "key"
+              ]
+            }
+          }
+        }
+      ]
+    },
+    "log-settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [],
+      "properties": {
+        "requestMasks": {
+          "$ref": "#/$defs/masks"
+        },
+        "responseMasks": {
+          "$ref": "#/$defs/masks"
+        },
+        "handledErrorMasks": {
+          "$ref": "#/$defs/masks"
+        }
+      }
+    },
+    "masks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "allOf": [
+          {
+            "$ref": "#/$defs/transformation-item"
+          }
+        ],
+        "unevaluatedProperties": false,
+        "required": [
+          "transformationSource",
+          "transformationType",
+          "transformationPath",
+          "pattern"
+        ],
+        "properties": {
+          "pattern": {
+            "default": "all",
+            "enum": [
+              "all",
+              "fourPlainFourMasked",
+              "allButFirstSixLastFour",
+              "allButFirstOneLastFour",
+              "allAsRedacted"
+            ]
+          }
+        }
+      }
+    },
+    "shieldconex-action": {
+      "type": "object",
+      "required": [
+        "authorization",
+        "method",
+        "templateRef",
+        "instructions"
+      ],
+      "properties": {
+        "type": {
+          "const": "shieldconex"
+        },
+        "authorization": {
+          "$ref": "#/$defs/request-action-authorization"
+        },
+        "method": {
+          "enum": [
+            "tokenize",
+            "detokenize"
+          ]
+        },
+        "templateRef": {
+          "type": "string",
+          "pattern": "^[a-zA-Z0-9_-]+$"
+        },
+        "cacheTokens": {
+          "type": "boolean"
+        },
+        "bfidHeaderName": {
+          "type": "string",
+          "pattern": "^scx-[a-z0-9_-]+$"
+        },
+        "logSettings": {
+          "$ref": "#/$defs/log-settings"
+        },
+        "instructions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "allOf": [
+              {
+                "$ref": "#/$defs/transformation-item"
+              }
+            ],
+            "unevaluatedProperties": false,
+            "required": [
+              "transformationSource",
+              "transformationType",
+              "transformationPath",
+              "fieldName"
+            ],
+            "properties": {
+              "fieldName": {
+                "type": "string",
+                "pattern": "^[\\s\\S]*$"
+              }
+            }
+          }
+        }
+      }
+    },
+    "parser-action": {
+      "type": "object",
+      "required": [
+        "type",
+        "instructions"
+      ],
+      "properties": {
+        "type": {
+          "const": "parser"
+        },
+        "authorization": {
+          "$ref": "#/$defs/request-action-authorization"
+        },
+        "method": {
+          "default": "decrypt",
+          "enum": [
+            "decrypt"
+          ]
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "deviceType": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "logSettings": {
+          "$ref": "#/$defs/log-settings"
+        },
+        "serialLocation": {
+          "type": "object",
+          "allOf": [
+            {
+              "$ref": "#/$defs/transformation-item"
+            }
+          ],
+          "required": [
+            "transformationType",
+            "transformationSource",
+            "transformationPath"
+          ],
+          "unevaluatedProperties": false
+        },
+        "instructions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "unevaluatedProperties": false,
+            "required": [],
+            "allOf": [
+              {
+                "$ref": "#/$defs/transformation-item"
+              },
+              {
+                "required": [
+                  "dataType",
+                  "format"
+                ],
+                "properties": {
+                  "dataType": {
+                    "enum": [
+                      "string",
+                      "number",
+                      "boolean"
+                    ]
+                  },
+                  "format": {
+                    "enum": [
+                      "expression",
+                      "cvv",
+                      "discretionary",
+                      "expiry",
+                      "expiryMonth",
+                      "expiryRaw",
+                      "expiryYear",
+                      "firstName",
+                      "firstNameAndSurname",
+                      "fullYear",
+                      "pan",
+                      "rawName",
+                      "rawTrack1",
+                      "rawTrack2",
+                      "track1",
+                      "track2",
+                      "track2equivalentLower",
+                      "track2equivalentUpper"
+                    ]
+                  },
+                  "formatExpression": {
+                    "type": "string",
+                    "pattern": "^[\\s\\S]*$"
+                  },
+                  "default": {
+                    "type": [
+                      "string",
+                      "null"
+                    ],
+                    "pattern": "^[\\s\\S]*$"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    },
+    "pinTranslation-action": {
+      "type": "object",
+      "required": [
+        "authorization",
+        "partnerId",
+        "clientId",
+        "partnerKey",
+        "serialLocation",
+        "deviceTypeLocation",
+        "primaryAccountNumberLocation",
+        "ksiLocation",
+        "pinBlockLocation",
+        "destinationKsiLocation"
+      ],
+      "properties": {
+        "type": {
+          "const": "pinTranslation"
+        },
+        "authorization": {
+          "$ref": "#/$defs/request-action-authorization"
+        },
+        "partnerId": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "clientId": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "partnerKey": {
+          "type": "string",
+          "pattern": "^[\\s\\S]*$"
+        },
+        "logSettings": {
+          "$ref": "#/$defs/log-settings"
+        },
+        "serialLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "deviceTypeLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "primaryAccountNumberLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "ksiLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "destinationKsiLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "pinBlockLocation": {
+          "$ref": "#/$defs/transformation-item",
+          "unevaluatedProperties": false
+        },
+        "sourcePinBlockFormat": {
+          "enum": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "34",
+            "35",
+            "41",
+            "42",
+            "47",
+            "48"
+          ]
+        },
+        "destinationPinBlockFormat": {
+          "enum": [
+            "01",
+            "02",
+            "03",
+            "04",
+            "05",
+            "34",
+            "35",
+            "41",
+            "42",
+            "47",
+            "48"
+          ]
+        }
+      }
+    },
+    "request-action": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "shieldconex",
+            "parser",
+            "pinTranslation"
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/shieldconex-action"
+        },
+        {
+          "$ref": "#/$defs/parser-action"
+        },
+        {
+          "$ref": "#/$defs/pinTranslation-action"
+        }
+      ]
+    },
+    "response-action": {
+      "type": "object",
+      "unevaluatedProperties": false,
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "shieldconex"
+          ]
+        }
+      },
+      "discriminator": {
+        "propertyName": "type"
+      },
+      "oneOf": [
+        {
+          "$ref": "#/$defs/shieldconex-action"
+        }
+      ]
+    }
+  }
+}

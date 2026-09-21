@@ -17,14 +17,11 @@
  *
  * Reference:
  * https://developers.bluefin.com/payconex/docs/getting-started-1
+ * https://developers.bluefin.com/payconex/v4/reference/api-authentication
  *
  * Example string-to-hash (newlines shown as \n for readability):
  *
- *   POST /api/v1/apple_pay/merchant_registration/220614966801\n
- *   D1O48xR1TDvDDDKS7L8EFsXrzu\n
- *   1670806392214\n
- *   \n
- *   4c43f07b4dbc4f21c32ce3b5518d9645faf6ad9b422069fd116f56d25c229aab
+ * POST /api/v4/accounts/180000000742/applePay/enrollment\nD1O48xR1TDvDDDKS7L8EFsXrzu\n1670806392214\n\n4c43f07b4dbc4f21c32ce3b5518d9645faf6ad9b422069fd116f56d25c229aab
  */
 
 declare(strict_types=1);

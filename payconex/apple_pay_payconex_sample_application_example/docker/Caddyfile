@@ -1,0 +1,13 @@
+# Local HTTPS front door for Apple Pay development.
+# Apple Pay requires a secure context (https://) — plain http://localhost will fail with:
+# "Trying to start an Apple Pay session from an insecure document."
+#
+# Use hostname applepay.local (see README hosts-file steps). tls internal = Caddy's
+# local CA — trust it once in your macOS keychain.
+#
+# Mounted by ../docker-compose.yml; not used by the PHP app or cPanel deploy.
+
+{$CADDY_SITE:applepay.local} {
+	reverse_proxy apple-pay-demo:80
+	tls internal
+}

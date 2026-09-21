@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Merchant Registration · Apple Pay + PayConex</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <header class="site-header navbar navbar-expand-md navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">PayConex <span>Apple Pay</span></a>
+      <nav class="navbar-nav flex-row gap-1 ms-md-auto" aria-label="Demo pages">
+        <a class="nav-link px-3" href="index.html">Home</a>
+        <a class="nav-link active px-3" href="register.html">Registration</a>
+        <a class="nav-link px-3" href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container py-3">
+    <section class="hero-block">
+      <h1>Merchant registration</h1>
+      <p>
+        Register domains with PayConex so Apple Pay can be used on those hosts
+        with the PayConex payment processing certificate. The PHP backend builds
+        the HMAC Authorization header — secrets never leave the server.
+      </p>
+    </section>
+
+    <div id="status" class="status-banner" role="status" aria-live="polite"></div>
+
+    <section class="panel">
+      <div class="d-flex flex-wrap justify-content-between align-items-start gap-2 mb-2">
+        <h2 class="mb-0"><span class="step-badge">0</span> Current enrollment</h2>
+        <button type="button" id="refresh-enrollment" class="btn btn-sm btn-outline-primary">Refresh</button>
+      </div>
+      <p class="text-secondary">
+        Domains already registered for this account via
+        <code class="inline">GET /api/v4/accounts/{accountId}/applePay/enrollment</code>.
+      </p>
+      <p class="small text-secondary mb-2" id="enrollment-meta">Loading enrollment…</p>
+      <div id="enrollment-domains" class="domain-list" aria-live="polite"></div>
+    </section>
+
+    <section class="panel">
+      <h2><span class="step-badge">1</span> Domains to register</h2>
+      <p class="text-secondary">
+        Hosts that will render an Apple Pay button. Prefills from the current page hostname
+        (override in <code class="inline">config.php</code> if needed).
+      </p>
+      <div id="domain-list" class="domain-list" aria-live="polite"></div>
+      <div class="row g-2 align-items-end">
+        <div class="col-md-8">
+          <label class="form-label" for="domain-input">Add domain</label>
+          <input type="text" class="form-control" id="domain-input" placeholder="example.com" autocomplete="off">
+        </div>
+        <div class="col-md-4">
+          <button type="button" id="add-domain" class="btn btn-outline-primary w-100">Add domain</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><span class="step-badge">2</span> Merchant details</h2>
+      <div class="mb-3">
+        <label class="form-label" for="merchant-url">Merchant URL</label>
+        <input type="text" class="form-control" id="merchant-url" placeholder="example.com" autocomplete="off" required>
+        <div class="form-text">Hostname only.</div>
+      </div>
+      <div class="mb-3">
+        <label class="form-label" for="partner-name">Partner merchant name</label>
+        <input type="text" class="form-control" id="partner-name" required>
+      </div>
+      <p class="text-secondary small">
+        Account ID and API keys are read from server-side <code class="inline">config.php</code>.
+      </p>
+      <button type="button" id="submit-reg" class="btn btn-primary">Register merchant</button>
+    </section>
+
+    <section class="panel">
+      <h2><span class="step-badge">3</span> Response</h2>
+      <p class="text-secondary">
+        Training view of the signed request metadata and PayConex response.
+        The API secret is never shown.
+      </p>
+      <pre id="output" class="output">Submit the form to see the request/response here.</pre>
+    </section>
+
+    <footer class="site-footer">
+      Register: <code class="inline">POST /api/v1/apple_pay/merchant_registration/{account_id}</code>
+      · Lookup: <code class="inline">GET /api/v4/accounts/{account_id}/applePay/enrollment</code>
+    </footer>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Checkout · Apple Pay + PayConex</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <!-- Official Apple Pay JS SDK (required for third-party browser support) -->
+  <script crossorigin src="https://applepay.cdn-apple.com/jsapi/1.latest/apple-pay-sdk.js"></script>
+</head>
+<body>
+  <header class="site-header navbar navbar-expand-md navbar-dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">PayConex <span>Apple Pay</span></a>
+      <nav class="navbar-nav flex-row gap-1 ms-md-auto" aria-label="Demo pages">
+        <a class="nav-link px-3" href="index.html">Home</a>
+        <a class="nav-link px-3" href="register.html">Registration</a>
+        <a class="nav-link active px-3" href="checkout.html">Checkout</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container py-3">
+    <section class="hero-block">
+      <h1>Apple Pay checkout</h1>
+      <p>
+        Demonstrates merchant validation via PayConex, then charges the Apple Pay
+        token with a QSAPI <code class="inline">SALE</code>
+        (<code class="inline">tender_type=APay</code>).
+        Requires <strong>HTTPS</strong> on a registered domain. Works in Safari and
+        (with iOS&nbsp;18+) third-party browsers via the official Apple Pay JS button.
+      </p>
+    </section>
+
+    <div id="status" class="status-banner info visible" role="status" aria-live="polite">
+      Checking Apple Pay availability…
+    </div>
+
+    <section class="panel">
+      <h2><span class="step-badge">1</span> Payment details</h2>
+      <div class="mb-3 checkout-amount">
+        <label class="form-label" for="amount">Amount (USD)</label>
+        <input type="text" class="form-control" id="amount" inputmode="decimal" pattern="^\d+(\.\d{1,2})?$" value="1.00">
+      </div>
+      <p class="text-secondary">
+        Display name: <strong id="display-name">—</strong><br>
+        Account ID: <code class="inline" id="account-id">—</code>
+      </p>
+      <div class="d-flex flex-wrap gap-3 align-items-center">
+        <apple-pay-button
+          id="apple-pay-button"
+          buttonstyle="black"
+          type="plain"
+          locale="en-US"
+        ></apple-pay-button>
+        <p id="apple-pay-unsupported" class="text-secondary mb-0" hidden>
+          Apple Pay is not available in this browser/context. Use HTTPS on a registered
+          domain. Safari works natively; Chrome/Edge/Firefox need the official JS SDK
+          button and (for desktop) an iPhone/iPad on iOS&nbsp;18+ to complete payment.
+        </p>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2><span class="step-badge">2</span> Payment flow</h2>
+      <p class="text-secondary">
+        Live log of the exchange: merchant session → Apple Pay token → QSAPI SALE.
+        Sensitive token payload fields are omitted from the display.
+      </p>
+      <ol id="flow-log" class="flow-log" aria-live="polite">
+        <li class="flow-step is-idle" data-step="session">
+          <div class="flow-step-head">
+            <span class="flow-step-index">1</span>
+            <div>
+              <div class="flow-step-title">Merchant session</div>
+              <div class="flow-step-summary text-secondary">Waiting for Apple Pay…</div>
+            </div>
+            <span class="flow-step-state">Idle</span>
+          </div>
+          <pre class="flow-step-detail" hidden></pre>
+        </li>
+        <li class="flow-step is-idle" data-step="token">
+          <div class="flow-step-head">
+            <span class="flow-step-index">2</span>
+            <div>
+              <div class="flow-step-title">Apple Pay token</div>
+              <div class="flow-step-summary text-secondary">Waiting for authorization…</div>
+            </div>
+            <span class="flow-step-state">Idle</span>
+          </div>
+          <pre class="flow-step-detail" hidden></pre>
+        </li>
+        <li class="flow-step is-idle" data-step="qsapi">
+          <div class="flow-step-head">
+            <span class="flow-step-index">3</span>
+            <div>
+              <div class="flow-step-title">QSAPI SALE</div>
+              <div class="flow-step-summary text-secondary">Waiting for token…</div>
+            </div>
+            <span class="flow-step-state">Idle</span>
+          </div>
+          <pre class="flow-step-detail" hidden></pre>
+        </li>
+      </ol>
+    </section>
+
+    <footer class="site-footer">
+      Flow: Apple Pay SDK → PayConex <code class="inline">/applePay/session</code>
+      → token → <code class="inline">/api/process-payment.php</code> → QSAPI
+    </footer>
+  </main>
+
+  <script src="js/common.js"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

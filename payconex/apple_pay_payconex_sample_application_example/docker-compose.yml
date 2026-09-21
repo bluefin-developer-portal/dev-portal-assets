@@ -1,0 +1,33 @@
+# Run from the repo root:
+#   docker compose up --build
+#
+# App packaging + local HTTPS helpers live under docker/.
+
+services:
+  apple-pay-demo:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    volumes:
+      - .:/var/www/html
+    # HTTP kept for API smoke tests; browsers should use the https service below.
+    ports:
+      - "8080:80"
+
+  # Local HTTPS reverse proxy for Apple Pay (secure context + applepay.local hostname).
+  # After /etc/hosts + trusting Caddy's CA, open https://applepay.local:8443 (see README).
+  https:
+    image: caddy:2-alpine
+    ports:
+      - "8443:443"
+      - "8081:80"
+    volumes:
+      - ./docker/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - apple-pay-demo
+
+volumes:
+  caddy_data:
+  caddy_config:

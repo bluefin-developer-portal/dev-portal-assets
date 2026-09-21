@@ -1,0 +1,349 @@
+/**
+ * Thin theme on top of Bootstrap 5.
+ * Palette loosely inspired by bluefin.com (navy primary, clean white surfaces).
+ */
+:root {
+  --bf-navy: #0a2a43;
+  --bf-navy-deep: #061b2c;
+  --bf-blue: #1473b8;
+  --bf-blue-hover: #0f5f99;
+  --bf-sky: #e8f2f9;
+  --bf-ink: #1a2330;
+  --bf-muted: #5c6b7a;
+  --bs-primary: #1473b8;
+  --bs-primary-rgb: 20, 115, 184;
+  --bs-body-color: var(--bf-ink);
+  --bs-body-bg: #f4f7fa;
+  --bs-link-color: #1473b8;
+  --bs-link-hover-color: #0f5f99;
+  --bs-border-radius: 0.5rem;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--bf-ink);
+  background:
+    linear-gradient(180deg, #ffffff 0%, #f4f7fa 28%, #eef3f8 100%);
+}
+
+.site-header {
+  background: var(--bf-navy);
+  color: #fff;
+}
+
+.site-header .navbar-brand {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #fff;
+}
+
+.site-header .navbar-brand span {
+  color: #7ec8f0;
+  font-weight: 600;
+}
+
+.site-header .nav-link {
+  color: rgba(255, 255, 255, 0.82);
+  font-weight: 500;
+}
+
+.site-header .nav-link:hover,
+.site-header .nav-link:focus {
+  color: #fff;
+}
+
+.site-header .nav-link.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 0.375rem;
+}
+
+.hero-block {
+  padding: 1.75rem 0 0.5rem;
+}
+
+.hero-block h1 {
+  font-weight: 700;
+  color: var(--bf-navy);
+  letter-spacing: -0.02em;
+}
+
+.hero-block p {
+  max-width: 40rem;
+  color: var(--bf-muted);
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid rgba(10, 42, 67, 0.08);
+  border-radius: 0.65rem;
+  padding: 1.25rem 1.35rem;
+  box-shadow: 0 8px 24px rgba(10, 42, 67, 0.05);
+  margin-bottom: 1.25rem;
+}
+
+.panel h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--bf-navy);
+  margin-bottom: 0.75rem;
+}
+
+.step-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.4rem;
+  border-radius: 50%;
+  background: var(--bf-sky);
+  color: var(--bf-blue);
+  font-size: 0.8rem;
+  font-weight: 700;
+  vertical-align: -0.1rem;
+}
+
+.domain-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0 1rem;
+  min-height: 2rem;
+}
+
+.domain-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  background: var(--bf-sky);
+  color: var(--bf-navy);
+  border-radius: 999px;
+  padding: 0.3rem 0.7rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.domain-chip button {
+  all: unset;
+  cursor: pointer;
+  font-weight: 700;
+  opacity: 0.65;
+  line-height: 1;
+}
+
+.domain-chip button:hover {
+  opacity: 1;
+}
+
+.status-banner {
+  display: none;
+  border-radius: 0.5rem;
+  padding: 0.85rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+}
+
+.status-banner.visible {
+  display: block;
+}
+
+.status-banner.ok {
+  background: #e8f6ee;
+  color: #1b6b3a;
+  border-color: #b7e0c5;
+}
+
+.status-banner.err {
+  background: #fdeeee;
+  color: #9b2c2c;
+  border-color: #f0c2c2;
+}
+
+.status-banner.info {
+  background: var(--bf-sky);
+  color: var(--bf-navy);
+  border-color: #c5dced;
+}
+
+pre.output {
+  background: var(--bf-navy-deep);
+  color: #d7e8f4;
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow: auto;
+  max-height: 28rem;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+  margin-bottom: 0;
+}
+
+.checkout-amount {
+  max-width: 12rem;
+}
+
+#apple-pay-button {
+  display: none;
+  --apple-pay-button-width: 240px;
+  --apple-pay-button-height: 44px;
+  --apple-pay-button-border-radius: 8px;
+  --apple-pay-button-padding: 0;
+}
+
+.home-cards a.panel {
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.home-cards a.panel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20, 115, 184, 0.35);
+  box-shadow: 0 12px 28px rgba(10, 42, 67, 0.1);
+  color: inherit;
+}
+
+.home-cards h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--bf-navy);
+  margin-bottom: 0.4rem;
+}
+
+.site-footer {
+  margin: 2.5rem 0 1.5rem;
+  font-size: 0.85rem;
+  color: var(--bf-muted);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--bf-blue);
+  --bs-btn-border-color: var(--bf-blue);
+  --bs-btn-hover-bg: var(--bf-blue-hover);
+  --bs-btn-hover-border-color: var(--bf-blue-hover);
+  --bs-btn-active-bg: var(--bf-navy);
+  --bs-btn-active-border-color: var(--bf-navy);
+}
+
+code.inline {
+  background: var(--bf-sky);
+  color: var(--bf-navy);
+  padding: 0.1rem 0.35rem;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+.flow-log {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.flow-step {
+  border: 1px solid rgba(10, 42, 67, 0.1);
+  border-radius: 0.6rem;
+  background: #fbfcfe;
+  padding: 0.85rem 1rem;
+}
+
+.flow-step-head {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 0.75rem;
+  align-items: start;
+}
+
+.flow-step-index {
+  width: 1.75rem;
+  height: 1.75rem;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background: #e6edf4;
+  color: var(--bf-navy);
+}
+
+.flow-step-title {
+  font-weight: 700;
+  color: var(--bf-navy);
+}
+
+.flow-step-summary {
+  font-size: 0.92rem;
+  margin-top: 0.15rem;
+}
+
+.flow-step-state {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--bf-muted);
+  padding-top: 0.2rem;
+}
+
+.flow-step-detail {
+  margin: 0.75rem 0 0;
+  background: var(--bf-navy-deep);
+  color: #d7e8f4;
+  border-radius: 0.45rem;
+  padding: 0.85rem 1rem;
+  overflow: auto;
+  max-height: 18rem;
+  font-size: 0.8rem;
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.flow-step.is-active {
+  border-color: rgba(20, 115, 184, 0.45);
+  background: #f3f9fd;
+}
+
+.flow-step.is-active .flow-step-index {
+  background: var(--bf-blue);
+  color: #fff;
+}
+
+.flow-step.is-active .flow-step-state {
+  color: var(--bf-blue);
+}
+
+.flow-step.is-ok {
+  border-color: rgba(27, 107, 58, 0.35);
+  background: #f4fbf6;
+}
+
+.flow-step.is-ok .flow-step-index {
+  background: #1b6b3a;
+  color: #fff;
+}
+
+.flow-step.is-ok .flow-step-state {
+  color: #1b6b3a;
+}
+
+.flow-step.is-err {
+  border-color: rgba(155, 44, 44, 0.35);
+  background: #fdf6f6;
+}
+
+.flow-step.is-err .flow-step-index {
+  background: #9b2c2c;
+  color: #fff;
+}
+
+.flow-step.is-err .flow-step-state {
+  color: #9b2c2c;
+}
+

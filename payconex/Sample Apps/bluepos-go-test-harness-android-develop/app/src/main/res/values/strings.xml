@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">TestAIDL Go</string>
+    <string name="close">Close</string>
+    <string name="amount">Amount</string>
+    <string name="tip">Tip</string>
+    <string name="transaction_id">Transaction ID</string>
+    <string name="payment">Payment</string>
+    <string name="refund">Refund</string>
+    <string name="auth">Auth</string>
+    <string name="capture">Capture</string>
+    <string name="clear_data_read">Clear data read</string>
+    <string name="transactions">Transactions</string>
+    <string name="status">Status:</string>
+    <string name="trans_type">Type:</string>
+    <string name="already_refunded">Already refunded</string>
+    <string name="status_is">Status is %1$s!</string>
+    <string name="exit">Exit</string>
+    <string name="debug">Debug</string>
+    <string name="init">Init</string>
+    <string name="amount_text">"Amount: "</string>
+    <string name="tip_text">" (tip: %1$s) "</string>
+    <string name="to_refund">" to refund: %1$s"</string>
+    <string name="trans_id">"Id: "</string>
+    <string name="reboot">Reboot</string>
+    <string name="not_initialized">Not initialized</string>
+    <string name="save_card">Save card</string>
+    <string name="version">"SDK version: %1s"</string>
+    <string name="connect">Connect</string>
+    <string name="disconnect">Disconnect</string>
+    <string name="forget">Forget</string>
+</resources>

@@ -40,7 +40,7 @@ Change the scheme to one that belongs to your organization, in both `Info.plist`
 
 1. Remove the local package reference from the project.
 2. Choose **File > Add Package Dependencies…** and enter the package location supplied by Bluefin. Add the `BluePosGoSDK` product to the application target.
-3. Delete the demo return in `CheckoutModel.simulateReturn`. With the real package, BluePOS Go reopens the app and `SceneDelegate` forwards that URL.
+3. BluePOS Go reopens the app and `SceneDelegate` forwards that URL.
 4. Keep credentials in an authenticated backend or protected configuration. Do not commit a production Basic token or account ID.
 5. Test on a physical device with BluePOS Go installed. Confirm success, decline, cancellation, missing-app, and cold-return.
 

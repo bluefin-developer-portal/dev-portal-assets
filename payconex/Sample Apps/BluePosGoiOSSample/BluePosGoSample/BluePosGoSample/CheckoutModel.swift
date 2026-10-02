@@ -2,7 +2,8 @@ import BluePosGoSDK
 import Foundation
 
 final class CheckoutModel: ObservableObject {
-    @Published var basicToken = ""
+    @Published var apiKey = ""
+    @Published var apiSecret = ""
     @Published var accountId = ""
     @Published var environment = "STAGING"
     @Published var amount = "19.99"
@@ -11,9 +12,15 @@ final class CheckoutModel: ObservableObject {
     @Published var statusText = "Ready. Initialize before taking a payment."
     @Published var demoOutcome = "approved"
 
+    private func buildBasicToken(apiKey: String, apiSecret: String) -> String {
+        let credentials = "\(apiKey):\(apiSecret)"
+        let encoded = Data(credentials.utf8).base64EncodedString()
+        return "Basic \(encoded)"
+    }
+    
     private var credentials: PaymentCredentials {
         PaymentCredentials(
-            basicToken: basicToken.trimmingCharacters(in: .whitespacesAndNewlines),
+            basicToken: buildBasicToken(apiKey, apiSecret),
             accountId: accountId.trimmingCharacters(in: .whitespacesAndNewlines),
             environment: environment
         )

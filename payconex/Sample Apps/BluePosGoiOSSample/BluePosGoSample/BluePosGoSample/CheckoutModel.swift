@@ -36,7 +36,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Initialization failed: \(error); \(response?.message ?? "")"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func takePayment(type: PaymentTransactionType) {
@@ -70,7 +70,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Payment error: \(error); status: \(response?.status ?? "")"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func saveCard() {
@@ -96,7 +96,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Save failed: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func loadTransactions() {
@@ -114,7 +114,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Could not load transactions: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func fullRefund() {
@@ -132,7 +132,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Refund failed: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func partialRefund() {
@@ -156,7 +156,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Partial refund failed: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func capture() {
@@ -176,7 +176,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Capture failed: \(error); \(response?.processorMessage ?? "")"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func clearDataRead() {
@@ -199,7 +199,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Clear-data read failed: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId, forceStatus: demoOutcome == "masked" ? "masked" : nil)
+        /// simulateReturn(to: request.callbackURL, requestId: request.requestId, forceStatus: demoOutcome == "masked" ? "masked" : nil)
     }
 
     func rebootReader() {
@@ -216,7 +216,7 @@ final class CheckoutModel: ObservableObject {
                 self?.statusText = "Reboot failed: \(error)"
             }
         }
-        simulateReturn(to: request.callbackURL, requestId: request.requestId)
+        
     }
 
     func cancelPending() {
@@ -232,19 +232,4 @@ final class CheckoutModel: ObservableObject {
         statusText = "Pending SDK operations cleared."
     }
 
-    /// Demo stand-in for BluePOS Go returning through the registered URL scheme.
-    /// Delete this when the real app performs the handoff.
-    private func simulateReturn(to callbackURL: URL, requestId: String, forceStatus: String? = nil) {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
-            var components = URLComponents(url: callbackURL, resolvingAgainstBaseURL: false)
-            components?.queryItems = [
-                URLQueryItem(name: "requestId", value: requestId),
-                URLQueryItem(name: "status", value: forceStatus ?? self.demoOutcome),
-                URLQueryItem(name: "processorMessage", value: self.demoOutcome),
-                URLQueryItem(name: "approvalCode", value: "A12345")
-            ]
-            guard let url = components?.url else { return }
-            _ = BluePosGo.shared.handleCallback(url: url)
-        }
-    }
 }

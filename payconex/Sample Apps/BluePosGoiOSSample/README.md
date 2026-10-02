@@ -74,7 +74,7 @@ Refunds need `PaymentCredentials`. A save is a zero-amount card-on-file request.
 
 ```
 BluePosGoSample/
-  BluePosGoSDK/                          Local stand-in package
+  BluePosGoSDK/                          Bluefin Package
   BluePosGoSample/BluePosGoSample.xcodeproj
   BluePosGoSample/BluePosGoSample/       App sources and Info.plist
 ```

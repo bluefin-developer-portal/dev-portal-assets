@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">BluePOS Go Sample</string>
+    <string name="not_initialized">Not initialized</string>
+</resources>

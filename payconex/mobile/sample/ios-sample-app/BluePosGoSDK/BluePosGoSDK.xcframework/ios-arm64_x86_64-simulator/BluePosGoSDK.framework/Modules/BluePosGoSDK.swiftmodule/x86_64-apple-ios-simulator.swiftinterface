@@ -1,0 +1,3381 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.3.1 (swiftlang-6.3.1.1.2 clang-2100.0.123.102)
+// swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 6 -O -enable-experimental-feature DebugDescriptionMacro -module-name BluePosGoSDK -package-name blueposgosdk
+// swift-module-flags-ignorable:  -formal-cxx-interoperability-mode=off -interface-compiler-version 6.3.1
+import CryptoKit
+import Foundation
+import MobileCoreServices
+import Security
+import Swift
+import UIKit
+import UniformTypeIdentifiers
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import zlib
+@_hasMissingDesignatedInitializers @_Concurrency.MainActor final public class BluePosGo {
+  @_Concurrency.MainActor public static let shared: BluePosGoSDK.BluePosGo
+  @_Concurrency.MainActor final public var logger: ((BluePosGoSDK.BluePosLogLevel, Swift.String) -> Swift.Void)?
+  @_Concurrency.MainActor final public var isPaymentInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isInitializationInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isTransactionListInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isFullRefundInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isPartialRefundInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isCaptureInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isClearDataInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isRebootInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public var isSaveInProgress: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor final public func startPayment(request: BluePosGoSDK.PaymentRequest, completion: @escaping (BluePosGoSDK.PaymentResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func startPayment(request: BluePosGoSDK.PaymentRequest, transport: BluePosGoSDK.PaymentLaunchTransport, completion: @escaping (BluePosGoSDK.PaymentResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func initialize(request: BluePosGoSDK.InitializationRequest, completion: @escaping (BluePosGoSDK.InitializationResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func getTransactionList(request: BluePosGoSDK.TransactionListRequest, completion: @escaping (BluePosGoSDK.TransactionListResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func fullRefund(request: BluePosGoSDK.FullRefundRequest, completion: @escaping (BluePosGoSDK.FullRefundResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func partialRefund(request: BluePosGoSDK.PartialRefundRequest, completion: @escaping (BluePosGoSDK.PartialRefundResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func capture(request: BluePosGoSDK.CaptureRequest, completion: @escaping (BluePosGoSDK.CaptureResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func clearData(request: BluePosGoSDK.ClearDataRequest, completion: @escaping (BluePosGoSDK.ClearDataResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func reboot(request: BluePosGoSDK.RebootRequest, completion: @escaping (BluePosGoSDK.RebootResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func save(request: BluePosGoSDK.SaveRequest, completion: @escaping (BluePosGoSDK.SaveResult) -> Swift.Void)
+  @_Concurrency.MainActor final public func handleCallback(url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func cancelPendingPayment()
+  @_Concurrency.MainActor final public func cancelPendingInitialization()
+  @_Concurrency.MainActor final public func cancelPendingTransactionList()
+  @_Concurrency.MainActor final public func cancelPendingFullRefund()
+  @_Concurrency.MainActor final public func cancelPendingPartialRefund()
+  @_Concurrency.MainActor final public func cancelPendingCapture()
+  @_Concurrency.MainActor final public func cancelPendingClearData()
+  @_Concurrency.MainActor final public func cancelPendingReboot()
+  @_Concurrency.MainActor final public func cancelPendingSave()
+  @_Concurrency.MainActor final public func isPaymentCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isInitializationCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isTransactionListCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isFullRefundCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isPartialRefundCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isCaptureCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isClearDataCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isRebootCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func isSaveCallback(_ url: Foundation.URL) -> Swift.Bool
+  @_Concurrency.MainActor final public func paymentResult(from url: Foundation.URL) -> BluePosGoSDK.PaymentResult?
+  @_Concurrency.MainActor final public func initializationResult(from url: Foundation.URL) -> BluePosGoSDK.InitializationResult?
+  @_Concurrency.MainActor final public func transactionListResult(from url: Foundation.URL) -> BluePosGoSDK.TransactionListResult?
+  @_Concurrency.MainActor final public func fullRefundResult(from url: Foundation.URL) -> BluePosGoSDK.FullRefundResult?
+  @_Concurrency.MainActor final public func partialRefundResult(from url: Foundation.URL) -> BluePosGoSDK.PartialRefundResult?
+  @_Concurrency.MainActor final public func captureResult(from url: Foundation.URL) -> BluePosGoSDK.CaptureResult?
+  @_Concurrency.MainActor final public func clearDataResult(from url: Foundation.URL) -> BluePosGoSDK.ClearDataResult?
+  @_Concurrency.MainActor final public func rebootResult(from url: Foundation.URL) -> BluePosGoSDK.RebootResult?
+  @_Concurrency.MainActor final public func saveResult(from url: Foundation.URL) -> BluePosGoSDK.SaveResult?
+  nonisolated public static func parsePaymentResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.PaymentResult?
+  nonisolated public static func parseInitializationResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.InitializationResult?
+  nonisolated public static func parseTransactionListResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.TransactionListResult?
+  nonisolated public static func parseFullRefundResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.FullRefundResult?
+  nonisolated public static func parsePartialRefundResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.PartialRefundResult?
+  nonisolated public static func parseCaptureResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.CaptureResult?
+  nonisolated public static func parseClearDataResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.ClearDataResult?
+  nonisolated public static func parseRebootResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.RebootResult?
+  nonisolated public static func parseSaveResult(from url: Foundation.URL, expectedRequestId: Swift.String? = nil, expectedCallbackURL: Foundation.URL? = nil) -> BluePosGoSDK.SaveResult?
+  @available(*, deprecated, message: "Use startPayment(request:completion:) with PaymentRequest.")
+  @_Concurrency.MainActor final public func sendRequest(requestId: Swift.String, amount: Swift.String, type: Swift.String, currency: Swift.String, returnUrl: Swift.String, customId: Swift.String, notes: Swift.String, completion: @escaping (BluePosGoSDK.PaymentResult) -> Swift.Void = { _ in })
+  @objc deinit
+}
+public struct BluePosGoTransaction : Swift.Codable, Swift.Equatable, Swift.Identifiable, Swift.Sendable {
+  public let amount: Foundation.Decimal
+  public let tip: Foundation.Decimal?
+  public let type: BluePosGoSDK.BluePosGoTransactionType?
+  public let customId: Swift.String?
+  public let customID: Swift.String?
+  public let notes: Swift.String?
+  public let transactionDetails: BluePosGoSDK.BluePosGoTransactionDetails
+  public init(amount: Foundation.Decimal, tip: Foundation.Decimal?, type: BluePosGoSDK.BluePosGoTransactionType?, customId: Swift.String?, customID: Swift.String?, notes: Swift.String?, transactionDetails: BluePosGoSDK.BluePosGoTransactionDetails)
+  public var totalAmount: Foundation.Decimal {
+    get
+  }
+  public var id: Swift.String {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+  public static func == (a: BluePosGoSDK.BluePosGoTransaction, b: BluePosGoSDK.BluePosGoTransaction) -> Swift.Bool
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public struct BluePosGoTransactionDetails : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let status: BluePosGoSDK.Status?
+  public let description: Swift.String?
+  public let transactionId: Swift.String?
+  public let timestamp: Swift.String?
+  public let approvedAmount: Swift.String?
+  public let requestedAmount: Swift.String?
+  public let authCode: Swift.String?
+  public let processorMessage: Swift.String?
+  public let entryMode: BluePosGoSDK.ResponseEntryMode?
+  public let cardBrand: BluePosGoSDK.CardBrand?
+  public let cardLast4: Swift.String?
+  public init(status: BluePosGoSDK.Status?, description: Swift.String?, transactionId: Swift.String?, timestamp: Swift.String?, approvedAmount: Swift.String?, requestedAmount: Swift.String?, authCode: Swift.String?, processorMessage: Swift.String?, entryMode: BluePosGoSDK.ResponseEntryMode?, cardBrand: BluePosGoSDK.CardBrand?, cardLast4: Swift.String?)
+  public var cardLabel: Swift.String {
+    get
+  }
+  public static func == (a: BluePosGoSDK.BluePosGoTransactionDetails, b: BluePosGoSDK.BluePosGoTransactionDetails) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum BluePosGoTransactionType : Swift.String, Swift.Codable, Swift.CaseIterable, Swift.Sendable {
+  case sale
+  case authorization
+  case refund
+  case capture
+  case credit
+  case debit
+  case store
+  case save
+  case force
+  case reversal
+  case balance
+  case void
+  case initialization
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.BluePosGoTransactionType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.BluePosGoTransactionType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum BluePosLogLevel : Swift.String, Swift.Sendable {
+  case debug
+  case info
+  case warning
+  case error
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum CaptureError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case captureAppNotInstalled
+  case captureInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case captureFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.CaptureError, b: BluePosGoSDK.CaptureError) -> Swift.Bool
+}
+extension BluePosGoSDK.CaptureError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct CaptureRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let transactionId: Swift.String
+  public let amount: Swift.String
+  public let callbackURL: Foundation.URL
+  public init(requestId: Swift.String, transactionId: Swift.String, amount: Swift.String, callbackURL: Foundation.URL)
+  public static func == (a: BluePosGoSDK.CaptureRequest, b: BluePosGoSDK.CaptureRequest) -> Swift.Bool
+}
+public struct CaptureResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let type: Swift.String?
+  public let transactionId: Swift.String?
+  public let approvedAmount: Swift.String?
+  public let originalTransactionId: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, type: Swift.String?, transactionId: Swift.String?, approvedAmount: Swift.String?, originalTransactionId: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.CaptureResponse, b: BluePosGoSDK.CaptureResponse) -> Swift.Bool
+}
+public enum CaptureResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.CaptureResponse)
+  case failure(BluePosGoSDK.CaptureError, response: BluePosGoSDK.CaptureResponse?)
+  public var response: BluePosGoSDK.CaptureResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.CaptureResult, b: BluePosGoSDK.CaptureResult) -> Swift.Bool
+}
+public enum ClearDataError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case clearDataAppNotInstalled
+  case clearDataInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case clearDataFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.ClearDataError, b: BluePosGoSDK.ClearDataError) -> Swift.Bool
+}
+extension BluePosGoSDK.ClearDataError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct ClearDataRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let callbackURL: Foundation.URL
+  public let amount: Foundation.Decimal?
+  public let timeout: Swift.Int?
+  public init(requestId: Swift.String, callbackURL: Foundation.URL, amount: Foundation.Decimal? = nil, timeout: Swift.Int? = nil)
+  public static func == (a: BluePosGoSDK.ClearDataRequest, b: BluePosGoSDK.ClearDataRequest) -> Swift.Bool
+}
+public struct ClearDataResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let clearPan: Swift.String?
+  public let clearTrack2: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, clearPan: Swift.String?, clearTrack2: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.ClearDataResponse, b: BluePosGoSDK.ClearDataResponse) -> Swift.Bool
+}
+public enum ClearDataResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.ClearDataResponse)
+  case masked(BluePosGoSDK.ClearDataResponse)
+  case cancelled(BluePosGoSDK.ClearDataResponse)
+  case failure(BluePosGoSDK.ClearDataError, response: BluePosGoSDK.ClearDataResponse?)
+  public var response: BluePosGoSDK.ClearDataResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.ClearDataResult, b: BluePosGoSDK.ClearDataResult) -> Swift.Bool
+}
+public enum FullRefundError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case fullRefundAppNotInstalled
+  case fullRefundInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case fullRefundFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.FullRefundError, b: BluePosGoSDK.FullRefundError) -> Swift.Bool
+}
+extension BluePosGoSDK.FullRefundError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct FullRefundRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let transactionId: Swift.String
+  public let callbackURL: Foundation.URL
+  public let credentials: BluePosGoSDK.PaymentCredentials
+  public init(requestId: Swift.String, transactionId: Swift.String, callbackURL: Foundation.URL, credentials: BluePosGoSDK.PaymentCredentials)
+  public static func == (a: BluePosGoSDK.FullRefundRequest, b: BluePosGoSDK.FullRefundRequest) -> Swift.Bool
+}
+public struct FullRefundResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let transactionId: Swift.String?
+  public let status: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, transactionId: Swift.String?, status: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.FullRefundResponse, b: BluePosGoSDK.FullRefundResponse) -> Swift.Bool
+}
+public enum FullRefundResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.FullRefundResponse)
+  case failure(BluePosGoSDK.FullRefundError, response: BluePosGoSDK.FullRefundResponse?)
+  public var response: BluePosGoSDK.FullRefundResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.FullRefundResult, b: BluePosGoSDK.FullRefundResult) -> Swift.Bool
+}
+public enum InitializationError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case initializationAppNotInstalled
+  case initializationInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case initializationFailed(status: Swift.String?)
+  public static func == (a: BluePosGoSDK.InitializationError, b: BluePosGoSDK.InitializationError) -> Swift.Bool
+}
+extension BluePosGoSDK.InitializationError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct InitializationRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let callbackURL: Foundation.URL
+  public let sourceApplication: Swift.String
+  public let basicToken: Swift.String?
+  public let accountId: Swift.String?
+  public let environment: Swift.String?
+  public let basePath: Swift.String?
+  public init(requestId: Swift.String, callbackURL: Foundation.URL, sourceApplication: Swift.String = Bundle.main.bundleIdentifier ?? "unknown", basicToken: Swift.String? = nil, accountId: Swift.String? = nil, environment: Swift.String? = nil, basePath: Swift.String? = nil)
+  public static func == (a: BluePosGoSDK.InitializationRequest, b: BluePosGoSDK.InitializationRequest) -> Swift.Bool
+}
+public struct InitializationResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let message: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.InitializationResponse, b: BluePosGoSDK.InitializationResponse) -> Swift.Bool
+}
+public enum InitializationResult : Swift.Equatable, Swift.Sendable {
+  case initialized(BluePosGoSDK.InitializationResponse)
+  case failure(BluePosGoSDK.InitializationError, response: BluePosGoSDK.InitializationResponse?)
+  public var response: BluePosGoSDK.InitializationResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.InitializationResult, b: BluePosGoSDK.InitializationResult) -> Swift.Bool
+}
+public enum PartialRefundError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case partialRefundAppNotInstalled
+  case partialRefundInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case partialRefundFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.PartialRefundError, b: BluePosGoSDK.PartialRefundError) -> Swift.Bool
+}
+extension BluePosGoSDK.PartialRefundError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct PartialRefundRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let transactionId: Swift.String
+  public let amount: Foundation.Decimal
+  public let callbackURL: Foundation.URL
+  public let credentials: BluePosGoSDK.PaymentCredentials
+  public init(requestId: Swift.String, transactionId: Swift.String, amount: Foundation.Decimal, callbackURL: Foundation.URL, credentials: BluePosGoSDK.PaymentCredentials)
+  public static func == (a: BluePosGoSDK.PartialRefundRequest, b: BluePosGoSDK.PartialRefundRequest) -> Swift.Bool
+}
+public struct PartialRefundResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let transactionId: Swift.String?
+  public let status: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, transactionId: Swift.String?, status: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.PartialRefundResponse, b: BluePosGoSDK.PartialRefundResponse) -> Swift.Bool
+}
+public enum PartialRefundResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.PartialRefundResponse)
+  case failure(BluePosGoSDK.PartialRefundError, response: BluePosGoSDK.PartialRefundResponse?)
+  public var response: BluePosGoSDK.PartialRefundResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.PartialRefundResult, b: BluePosGoSDK.PartialRefundResult) -> Swift.Bool
+}
+public enum PaymentError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case paymentAppNotInstalled
+  case paymentInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case paymentFailed(status: Swift.String?)
+  case pasteboardHandoffUnavailable
+  case pasteboardHandoffMissing
+  case pasteboardHandoffExpired
+  case pasteboardHandoffInvalid
+  case pasteboardHandoffDecryptionFailed
+  case urlPayloadTooLarge
+  case urlPayloadInvalid
+  case urlPayloadDecompressionFailed
+  public static func == (a: BluePosGoSDK.PaymentError, b: BluePosGoSDK.PaymentError) -> Swift.Bool
+}
+extension BluePosGoSDK.PaymentError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public enum PaymentLaunchTransport : Swift.Equatable, Swift.Sendable {
+  case urlScheme
+  case gzip
+  case pasteboard
+  case automatic(maxInlineURLLength: Swift.Int = 1800)
+  public static func == (a: BluePosGoSDK.PaymentLaunchTransport, b: BluePosGoSDK.PaymentLaunchTransport) -> Swift.Bool
+}
+public struct PaymentCredentials : Swift.Codable, Swift.Equatable, Swift.Sendable {
+  public let basicToken: Swift.String
+  public let accountId: Swift.String
+  public let environment: Swift.String
+  public init(basicToken: Swift.String, accountId: Swift.String, environment: Swift.String)
+  public static func == (a: BluePosGoSDK.PaymentCredentials, b: BluePosGoSDK.PaymentCredentials) -> Swift.Bool
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PaymentRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let amount: Foundation.Decimal
+  public let tip: Foundation.Decimal?
+  public let transactionType: BluePosGoSDK.PaymentTransactionType
+  public let currency: Swift.String
+  public let callbackURL: Foundation.URL
+  public let customId: Swift.String?
+  public let notes: Swift.String?
+  public let credentials: BluePosGoSDK.PaymentCredentials?
+  public let requiresReaderReady: Swift.Bool
+  public init(requestId: Swift.String, amount: Foundation.Decimal, tip: Foundation.Decimal? = nil, transactionType: BluePosGoSDK.PaymentTransactionType = .sale, currency: Swift.String, callbackURL: Foundation.URL, customId: Swift.String? = nil, notes: Swift.String? = nil, credentials: BluePosGoSDK.PaymentCredentials? = nil, requiresReaderReady: Swift.Bool = true)
+  public static func == (a: BluePosGoSDK.PaymentRequest, b: BluePosGoSDK.PaymentRequest) -> Swift.Bool
+}
+public struct PaymentResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let processorMessage: Swift.String?
+  public let approvalCode: Swift.String?
+  public let transactionId: Swift.String?
+  public let customId: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, processorMessage: Swift.String?, approvalCode: Swift.String?, transactionId: Swift.String?, customId: Swift.String?)
+  public static func == (a: BluePosGoSDK.PaymentResponse, b: BluePosGoSDK.PaymentResponse) -> Swift.Bool
+}
+public enum PaymentResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.PaymentResponse)
+  case cancelled(BluePosGoSDK.PaymentResponse)
+  case declined(BluePosGoSDK.PaymentResponse)
+  case failure(BluePosGoSDK.PaymentError, response: BluePosGoSDK.PaymentResponse?)
+  public var response: BluePosGoSDK.PaymentResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.PaymentResult, b: BluePosGoSDK.PaymentResult) -> Swift.Bool
+}
+public enum PaymentTransactionType : Swift.String, Swift.CaseIterable, Swift.Sendable {
+  case sale
+  case auth
+  case save
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.PaymentTransactionType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.PaymentTransactionType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum RebootError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case rebootAppNotInstalled
+  case rebootInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case rebootFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.RebootError, b: BluePosGoSDK.RebootError) -> Swift.Bool
+}
+extension BluePosGoSDK.RebootError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct RebootRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let callbackURL: Foundation.URL
+  public init(requestId: Swift.String, callbackURL: Foundation.URL)
+  public static func == (a: BluePosGoSDK.RebootRequest, b: BluePosGoSDK.RebootRequest) -> Swift.Bool
+}
+public struct RebootResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let responseCode: Swift.Int?
+  public let readerSerial: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, responseCode: Swift.Int?, readerSerial: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.RebootResponse, b: BluePosGoSDK.RebootResponse) -> Swift.Bool
+}
+public enum RebootResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.RebootResponse)
+  case failure(BluePosGoSDK.RebootError, response: BluePosGoSDK.RebootResponse?)
+  public var response: BluePosGoSDK.RebootResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.RebootResult, b: BluePosGoSDK.RebootResult) -> Swift.Bool
+}
+public enum SaveError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case saveAppNotInstalled
+  case saveInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case saveFailed(code: Swift.String?, message: Swift.String?)
+  public static func == (a: BluePosGoSDK.SaveError, b: BluePosGoSDK.SaveError) -> Swift.Bool
+}
+extension BluePosGoSDK.SaveError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct SaveRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String
+  public let callbackURL: Foundation.URL
+  public let currency: Swift.String
+  public let customId: Swift.String?
+  public let notes: Swift.String?
+  public let credentials: BluePosGoSDK.PaymentCredentials?
+  public init(requestId: Swift.String, callbackURL: Foundation.URL, currency: Swift.String = "USD", customId: Swift.String? = nil, notes: Swift.String? = nil, credentials: BluePosGoSDK.PaymentCredentials? = nil)
+  public static func == (a: BluePosGoSDK.SaveRequest, b: BluePosGoSDK.SaveRequest) -> Swift.Bool
+}
+public struct SaveResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let transactionId: Swift.String?
+  public let approvalCode: Swift.String?
+  public let processorMessage: Swift.String?
+  public let entryMode: Swift.String?
+  public let cardBrand: Swift.String?
+  public let cardLast4: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, transactionId: Swift.String?, approvalCode: Swift.String?, processorMessage: Swift.String?, entryMode: Swift.String?, cardBrand: Swift.String?, cardLast4: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?)
+  public static func == (a: BluePosGoSDK.SaveResponse, b: BluePosGoSDK.SaveResponse) -> Swift.Bool
+}
+public enum SaveResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.SaveResponse)
+  case cancelled(BluePosGoSDK.SaveResponse)
+  case declined(BluePosGoSDK.SaveResponse)
+  case failure(BluePosGoSDK.SaveError, response: BluePosGoSDK.SaveResponse?)
+  public var response: BluePosGoSDK.SaveResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.SaveResult, b: BluePosGoSDK.SaveResult) -> Swift.Bool
+}
+public enum TransactionListError : Swift.Error, Swift.Equatable, Swift.Sendable {
+  case invalidRequest(Swift.String)
+  case transactionListAppNotInstalled
+  case transactionListInProgress
+  case invalidCallback
+  case requestIdMismatch(expected: Swift.String, received: Swift.String?)
+  case missingStatus
+  case missingTransactionList
+  case transactionListFailed(code: Swift.String?, message: Swift.String?)
+  case decodingFailed(Swift.String)
+  public static func == (a: BluePosGoSDK.TransactionListError, b: BluePosGoSDK.TransactionListError) -> Swift.Bool
+}
+extension BluePosGoSDK.TransactionListError : Foundation.LocalizedError {
+  public var errorDescription: Swift.String? {
+    get
+  }
+}
+public struct TransactionListRequest : Swift.Equatable, Swift.Sendable {
+  public let requestId: Swift.String?
+  public let callbackURL: Foundation.URL
+  public init(requestId: Swift.String? = nil, callbackURL: Foundation.URL)
+  public static func == (a: BluePosGoSDK.TransactionListRequest, b: BluePosGoSDK.TransactionListRequest) -> Swift.Bool
+}
+public struct TransactionListResponse : Swift.Equatable, Swift.Sendable {
+  public let callbackURL: Foundation.URL
+  public let requestId: Swift.String?
+  public let status: Swift.String?
+  public let errorCode: Swift.String?
+  public let errorMessage: Swift.String?
+  public let transactionCount: Swift.Int?
+  public let transactions: [BluePosGoSDK.BluePosGoTransaction]
+  public init(callbackURL: Foundation.URL, requestId: Swift.String?, status: Swift.String?, errorCode: Swift.String?, errorMessage: Swift.String?, transactionCount: Swift.Int?, transactions: [BluePosGoSDK.BluePosGoTransaction])
+  public static func == (a: BluePosGoSDK.TransactionListResponse, b: BluePosGoSDK.TransactionListResponse) -> Swift.Bool
+}
+public enum TransactionListResult : Swift.Equatable, Swift.Sendable {
+  case success(BluePosGoSDK.TransactionListResponse)
+  case failure(BluePosGoSDK.TransactionListError, response: BluePosGoSDK.TransactionListResponse?)
+  public var response: BluePosGoSDK.TransactionListResponse? {
+    get
+  }
+  public static func == (a: BluePosGoSDK.TransactionListResult, b: BluePosGoSDK.TransactionListResult) -> Swift.Bool
+}
+public struct APIHelper : Swift.Sendable {
+  public static func rejectNil(_ source: [Swift.String : (any Swift.Sendable)?]) -> [Swift.String : any Swift.Sendable]?
+  public static func rejectNilHeaders(_ source: [Swift.String : (any Swift.Sendable)?]) -> [Swift.String : Swift.String]
+  public static func convertBoolToString(_ source: [Swift.String : any Swift.Sendable]?) -> [Swift.String : any Swift.Sendable]?
+  public static func convertAnyToString(_ value: Any?) -> Swift.String?
+  public static func mapValueToPathItem(_ source: Any) -> Any
+  public static func mapValuesToQueryItems(_ source: [Swift.String : (wrappedValue: (any Swift.Sendable)?, isExplode: Swift.Bool)]) -> [Foundation.URLQueryItem]?
+  public static func mapValuesToQueryItems(_ source: [Swift.String : (any Swift.Sendable)?]) -> [Foundation.URLQueryItem]?
+}
+open class BluefinBluePosPoiModelsAPIConfiguration : @unchecked Swift.Sendable {
+  public var basePath: Swift.String {
+    get
+    set
+  }
+  public var customHeaders: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  public var credential: Foundation.URLCredential? {
+    get
+    set
+  }
+  public var requestBuilderFactory: any BluePosGoSDK.RequestBuilderFactory {
+    get
+    set
+  }
+  public var apiResponseQueue: Dispatch.DispatchQueue {
+    get
+    set
+  }
+  public var codableHelper: BluePosGoSDK.CodableHelper {
+    get
+    set
+  }
+  public var successfulStatusCodeRange: Swift.Range<Swift.Int> {
+    get
+    set
+  }
+  public var interceptor: any BluePosGoSDK.OpenAPIInterceptor {
+    get
+    set
+  }
+  public init(basePath: Swift.String = "https://api.payconex.net", customHeaders: [Swift.String : Swift.String] = [:], credential: Foundation.URLCredential? = nil, requestBuilderFactory: any BluePosGoSDK.RequestBuilderFactory = URLSessionRequestBuilderFactory(), apiResponseQueue: Dispatch.DispatchQueue = .main, codableHelper: BluePosGoSDK.CodableHelper = CodableHelper(), successfulStatusCodeRange: Swift.Range<Swift.Int> = 200..<300, interceptor: any BluePosGoSDK.OpenAPIInterceptor = DefaultOpenAPIInterceptor())
+  public static let shared: BluePosGoSDK.BluefinBluePosPoiModelsAPIConfiguration
+  @objc deinit
+}
+open class RequestBuilder<T> : @unchecked Swift.Sendable, Swift.Identifiable where T : Swift.Sendable {
+  final public let parameters: [Swift.String : any Swift.Sendable]?
+  final public let method: Swift.String
+  final public let URLString: Swift.String
+  final public let requestTask: BluePosGoSDK.RequestTask
+  final public let requiresAuthentication: Swift.Bool
+  final public let apiConfiguration: BluePosGoSDK.BluefinBluePosPoiModelsAPIConfiguration
+  public var credential: Foundation.URLCredential? {
+    get
+    set
+  }
+  public var headers: [Swift.String : Swift.String] {
+    get
+    set
+  }
+  public var onProgressReady: ((Foundation.Progress) -> Swift.Void)? {
+    get
+    set
+  }
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : any Swift.Sendable]?, headers: [Swift.String : Swift.String] = [:], requiresAuthentication: Swift.Bool, apiConfiguration: BluePosGoSDK.BluefinBluePosPoiModelsAPIConfiguration = BluefinBluePosPoiModelsAPIConfiguration.shared)
+  open func addHeaders(_ aHeaders: [Swift.String : Swift.String])
+  @discardableResult
+  open func execute(completion: @escaping @Sendable (_ result: Swift.Result<BluePosGoSDK.Response<T>, BluePosGoSDK.ErrorResponse>) -> Swift.Void) -> BluePosGoSDK.RequestTask
+  #if compiler(>=5.3) && $AsyncExecutionBehaviorAttributes
+  @discardableResult
+  @concurrent open func execute() async throws(BluePosGoSDK.ErrorResponse) -> BluePosGoSDK.Response<T>
+  #endif
+  public func addHeader(name: Swift.String, value: Swift.String) -> Self
+  open func addCredential()
+  public typealias ID = Swift.ObjectIdentifier
+  @objc deinit
+}
+public protocol RequestBuilderFactory : Swift.Sendable {
+  func getNonDecodableBuilder<T>() -> BluePosGoSDK.RequestBuilder<T>.Type where T : Swift.Sendable
+  func getBuilder<T>() -> BluePosGoSDK.RequestBuilder<T>.Type where T : Swift.Decodable, T : Swift.Sendable
+}
+open class CodableHelper : @unchecked Swift.Sendable {
+  public init()
+  public var dateFormatter: Foundation.DateFormatter {
+    get
+    set
+  }
+  public var jsonDecoder: Foundation.JSONDecoder {
+    get
+    set
+  }
+  public var jsonEncoder: Foundation.JSONEncoder {
+    get
+    set
+  }
+  open func decode<T>(_ type: T.Type, from data: Foundation.Data) -> Swift.Result<T, any Swift.Error> where T : Swift.Decodable
+  open func encode<T>(_ value: T) -> Swift.Result<Foundation.Data, any Swift.Error> where T : Swift.Encodable
+  @objc deinit
+}
+extension Swift.String : @retroactive Swift.CodingKey {
+  public var stringValue: Swift.String {
+    get
+  }
+  public init?(stringValue: Swift.String)
+  public var intValue: Swift.Int? {
+    get
+  }
+  public init?(intValue: Swift.Int)
+}
+extension Swift.KeyedEncodingContainerProtocol {
+  public mutating func encodeArray<T>(_ values: [T], forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeArrayIfPresent<T>(_ values: [T]?, forKey key: Self.Key) throws where T : Swift.Encodable
+  public mutating func encodeMap<T>(_ pairs: [Self.Key : T]) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+  public mutating func encodeMapIfPresent<T>(_ pairs: [Self.Key : T]?) throws where T : Swift.Encodable, Self.Key : Swift.Hashable
+  public mutating func encode(_ value: Foundation.Decimal, forKey key: Self.Key) throws
+  public mutating func encodeIfPresent(_ value: Foundation.Decimal?, forKey key: Self.Key) throws
+}
+extension Swift.KeyedDecodingContainerProtocol {
+  public func decodeArray<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T] where T : Swift.Decodable
+  public func decodeArrayIfPresent<T>(_ type: T.Type, forKey key: Self.Key) throws -> [T]? where T : Swift.Decodable
+  public func decodeMap<T>(_ type: T.Type, excludedKeys: Swift.Set<Self.Key>) throws -> [Self.Key : T] where T : Swift.Decodable, Self.Key : Swift.Hashable
+  public func decode(_ type: Foundation.Decimal.Type, forKey key: Self.Key) throws -> Foundation.Decimal
+  public func decodeIfPresent(_ type: Foundation.Decimal.Type, forKey key: Self.Key) throws -> Foundation.Decimal?
+}
+public struct JSONDataEncoding : Swift.Sendable {
+  public func encode(request: Foundation.URLRequest, with parameters: [Swift.String : any Swift.Sendable]?) -> Foundation.URLRequest
+  public static func encodingParameters(jsonData: Foundation.Data?) -> [Swift.String : any Swift.Sendable]?
+}
+@_hasMissingDesignatedInitializers open class JSONEncodingHelper {
+  open class func encodingParameters<T>(forEncodableObject encodableObj: T?, codableHelper: BluePosGoSDK.CodableHelper) -> [Swift.String : any Swift.Sendable]? where T : Swift.Encodable
+  @objc deinit
+}
+public enum JSONValue : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  case string(Swift.String)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case bool(Swift.Bool)
+  case array([BluePosGoSDK.JSONValue])
+  case dictionary([Swift.String : BluePosGoSDK.JSONValue])
+  case null
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.JSONValue, b: BluePosGoSDK.JSONValue) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension BluePosGoSDK.JSONValue {
+  public init(_ value: Swift.String)
+  public init(_ value: Swift.Int)
+  public init(_ value: Swift.Double)
+  public init(_ value: Swift.Bool)
+  public init(_ value: [BluePosGoSDK.JSONValue])
+  public init(_ value: [Swift.String : BluePosGoSDK.JSONValue])
+  public init<T>(_ codable: T) throws where T : Swift.Decodable, T : Swift.Encodable
+}
+extension BluePosGoSDK.JSONValue {
+  public var isString: Swift.Bool {
+    get
+  }
+  public var isInt: Swift.Bool {
+    get
+  }
+  public var isDouble: Swift.Bool {
+    get
+  }
+  public var isBool: Swift.Bool {
+    get
+  }
+  public var isArray: Swift.Bool {
+    get
+  }
+  public var isDictionary: Swift.Bool {
+    get
+  }
+  public var isNull: Swift.Bool {
+    get
+  }
+}
+extension BluePosGoSDK.JSONValue {
+  public var stringValue: Swift.String? {
+    get
+  }
+  public var intValue: Swift.Int? {
+    get
+  }
+  public var doubleValue: Swift.Double? {
+    get
+  }
+  public var boolValue: Swift.Bool? {
+    get
+  }
+  public var arrayValue: [BluePosGoSDK.JSONValue]? {
+    get
+  }
+  public var dictionaryValue: [Swift.String : BluePosGoSDK.JSONValue]? {
+    get
+  }
+}
+extension BluePosGoSDK.JSONValue {
+  public subscript(key: Swift.String) -> BluePosGoSDK.JSONValue? {
+    get
+  }
+  public subscript(index: Swift.Int) -> BluePosGoSDK.JSONValue? {
+    get
+  }
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByStringLiteral, Swift.ExpressibleByStringInterpolation {
+  public init(stringLiteral value: Swift.StringLiteralType)
+  public typealias ExtendedGraphemeClusterLiteralType = Swift.StringLiteralType
+  public typealias StringInterpolation = Swift.DefaultStringInterpolation
+  public typealias StringLiteralType = Swift.StringLiteralType
+  public typealias UnicodeScalarLiteralType = Swift.StringLiteralType
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByIntegerLiteral {
+  public init(integerLiteral value: Swift.IntegerLiteralType)
+  public typealias IntegerLiteralType = Swift.IntegerLiteralType
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByFloatLiteral {
+  public init(floatLiteral value: Swift.FloatLiteralType)
+  public typealias FloatLiteralType = Swift.FloatLiteralType
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByBooleanLiteral {
+  public init(booleanLiteral value: Swift.BooleanLiteralType)
+  public typealias BooleanLiteralType = Swift.BooleanLiteralType
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByArrayLiteral {
+  public init(arrayLiteral elements: BluePosGoSDK.JSONValue...)
+  public typealias ArrayLiteralElement = BluePosGoSDK.JSONValue
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByDictionaryLiteral {
+  public init(dictionaryLiteral elements: (Swift.String, BluePosGoSDK.JSONValue)...)
+  public typealias Key = Swift.String
+  public typealias Value = BluePosGoSDK.JSONValue
+}
+extension BluePosGoSDK.JSONValue : Swift.ExpressibleByNilLiteral {
+  public init(nilLiteral: ())
+}
+public enum NullEncodable<Wrapped> {
+  case encodeNothing
+  case encodeNull
+  case encodeValue(Wrapped)
+}
+extension BluePosGoSDK.NullEncodable : Swift.Equatable where Wrapped : Swift.Equatable {
+  public static func == (a: BluePosGoSDK.NullEncodable<Wrapped>, b: BluePosGoSDK.NullEncodable<Wrapped>) -> Swift.Bool
+}
+extension BluePosGoSDK.NullEncodable : Swift.Hashable where Wrapped : Swift.Hashable {
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+extension BluePosGoSDK.NullEncodable : Swift.Sendable where Wrapped : Swift.Sendable {
+}
+extension BluePosGoSDK.NullEncodable : Swift.Codable where Wrapped : Swift.Decodable, Wrapped : Swift.Encodable {
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+}
+public enum ErrorResponse : Swift.Error, Swift.Sendable {
+  case error(Swift.Int, Foundation.Data?, Foundation.URLResponse?, any Swift.Error)
+}
+public enum DownloadException : Swift.Error, Swift.Sendable {
+  case responseDataMissing
+  case responseFailed
+  case requestMissing
+  case requestMissingPath
+  case requestMissingURL
+  public static func == (a: BluePosGoSDK.DownloadException, b: BluePosGoSDK.DownloadException) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum DecodableRequestBuilderError : Swift.Error, Swift.Sendable {
+  case emptyDataResponse
+  case nilHTTPResponse
+  case unsuccessfulHTTPStatusCode
+  case jsonDecoding(Swift.DecodingError)
+  case generalError(any Swift.Error)
+}
+public struct Response<T> {
+  public let statusCode: Swift.Int
+  public let header: [Swift.String : Swift.String]
+  public let body: T
+  public let bodyData: Foundation.Data?
+  public init(statusCode: Swift.Int, header: [Swift.String : Swift.String], body: T, bodyData: Foundation.Data?)
+  public init(response: Foundation.HTTPURLResponse, body: T, bodyData: Foundation.Data?)
+}
+extension BluePosGoSDK.Response : Swift.Sendable where T : Swift.Sendable {
+}
+@_hasMissingDesignatedInitializers final public class RequestTask : @unchecked Swift.Sendable {
+  final public func cancel()
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers public class OpenISO8601DateFormatter : Foundation.DateFormatter, @unchecked Swift.Sendable {
+  @objc override dynamic public func date(from string: Swift.String) -> Foundation.Date?
+  @objc deinit
+}
+public protocol URLSessionDataTaskProtocol {
+  func resume()
+  var taskIdentifier: Swift.Int { get }
+  var progress: Foundation.Progress { get }
+  func cancel()
+}
+public protocol URLSessionProtocol : Swift.Sendable {
+  func dataTaskFromProtocol(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> any BluePosGoSDK.URLSessionDataTaskProtocol
+}
+extension Foundation.URLSession : BluePosGoSDK.URLSessionProtocol {
+  public func dataTaskFromProtocol(with request: Foundation.URLRequest, completionHandler: @escaping @Sendable (Foundation.Data?, Foundation.URLResponse?, (any Swift.Error)?) -> Swift.Void) -> any BluePosGoSDK.URLSessionDataTaskProtocol
+}
+extension Foundation.URLSessionDataTask : BluePosGoSDK.URLSessionDataTaskProtocol {
+}
+final public class URLSessionRequestBuilderFactory : BluePosGoSDK.RequestBuilderFactory, Swift.Sendable {
+  public init()
+  final public func getNonDecodableBuilder<T>() -> BluePosGoSDK.RequestBuilder<T>.Type where T : Swift.Sendable
+  final public func getBuilder<T>() -> BluePosGoSDK.RequestBuilder<T>.Type where T : Swift.Decodable, T : Swift.Sendable
+  @objc deinit
+}
+@_inheritsConvenienceInitializers open class URLSessionRequestBuilder<T> : BluePosGoSDK.RequestBuilder<T>, @unchecked Swift.Sendable where T : Swift.Sendable {
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : any Swift.Sendable]?, headers: [Swift.String : Swift.String] = [:], requiresAuthentication: Swift.Bool, apiConfiguration: BluePosGoSDK.BluefinBluePosPoiModelsAPIConfiguration = BluefinBluePosPoiModelsAPIConfiguration.shared)
+  open func createURLSession() -> any BluePosGoSDK.URLSessionProtocol
+  open func contentTypeForFormPart(fileURL: Foundation.URL) -> Swift.String?
+  open func createURLRequest(urlSession: any BluePosGoSDK.URLSessionProtocol, method: BluePosGoSDK.HTTPMethod, encoding: any BluePosGoSDK.ParameterEncoding, headers: [Swift.String : Swift.String]) throws -> Foundation.URLRequest
+  @discardableResult
+  override open func execute(completion: @escaping @Sendable (_ result: Swift.Result<BluePosGoSDK.Response<T>, BluePosGoSDK.ErrorResponse>) -> Swift.Void) -> BluePosGoSDK.RequestTask
+  open func buildHeaders() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+@_inheritsConvenienceInitializers open class URLSessionDecodableRequestBuilder<T> : BluePosGoSDK.URLSessionRequestBuilder<T>, @unchecked Swift.Sendable where T : Swift.Decodable, T : Swift.Sendable {
+  required public init(method: Swift.String, URLString: Swift.String, parameters: [Swift.String : any Swift.Sendable]?, headers: [Swift.String : Swift.String] = super, requiresAuthentication: Swift.Bool, apiConfiguration: BluePosGoSDK.BluefinBluePosPoiModelsAPIConfiguration = super)
+  @objc deinit
+}
+public enum HTTPMethod : Swift.String {
+  case options
+  case get
+  case head
+  case post
+  case put
+  case patch
+  case delete
+  case trace
+  case connect
+  public init?(rawValue: Swift.String)
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public protocol ParameterEncoding {
+  func encode(request: Foundation.URLRequest, with parameters: [Swift.String : any Swift.Sendable]?) throws -> Foundation.URLRequest
+}
+extension BluePosGoSDK.JSONDataEncoding : BluePosGoSDK.ParameterEncoding {
+}
+public enum OpenAPIInterceptorRetry {
+  case retry
+  case dontRetry
+  public static func == (a: BluePosGoSDK.OpenAPIInterceptorRetry, b: BluePosGoSDK.OpenAPIInterceptorRetry) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public protocol OpenAPIInterceptor : Swift.Sendable {
+  func intercept<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, completion: @escaping @Sendable (Swift.Result<Foundation.URLRequest, any Swift.Error>) -> Swift.Void) where T : Swift.Sendable
+  func retry<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, error: any Swift.Error, completion: @escaping @Sendable (BluePosGoSDK.OpenAPIInterceptorRetry) -> Swift.Void) where T : Swift.Sendable
+  func willSendRequest<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>) where T : Swift.Sendable
+  func didReceiveResponse<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, error: (any Swift.Error)?) where T : Swift.Sendable
+  func didComplete<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, result: Swift.Result<T, any Swift.Error>) where T : Swift.Sendable
+}
+extension BluePosGoSDK.OpenAPIInterceptor {
+  public func willSendRequest<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>) where T : Swift.Sendable
+  public func didReceiveResponse<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, error: (any Swift.Error)?) where T : Swift.Sendable
+  public func didComplete<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, result: Swift.Result<T, any Swift.Error>) where T : Swift.Sendable
+}
+final public class DefaultOpenAPIInterceptor : BluePosGoSDK.OpenAPIInterceptor {
+  public init()
+  final public func intercept<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, completion: @escaping @Sendable (Swift.Result<Foundation.URLRequest, any Swift.Error>) -> Swift.Void) where T : Swift.Sendable
+  final public func retry<T>(urlRequest: Foundation.URLRequest, urlSession: any BluePosGoSDK.URLSessionProtocol, requestBuilder: BluePosGoSDK.RequestBuilder<T>, data: Foundation.Data?, response: Foundation.URLResponse?, error: any Swift.Error, completion: @escaping @Sendable (BluePosGoSDK.OpenAPIInterceptorRetry) -> Swift.Void) where T : Swift.Sendable
+  @objc deinit
+}
+public struct StringRule : Swift.Sendable {
+  public var minLength: Swift.Int?
+  public var maxLength: Swift.Int?
+  public var pattern: Swift.String?
+}
+public struct NumericRule<T> where T : Swift.Comparable, T : Swift.Numeric {
+  public var minimum: T?
+  public var exclusiveMinimum: Swift.Bool
+  public var maximum: T?
+  public var exclusiveMaximum: Swift.Bool
+  public var multipleOf: T?
+}
+extension BluePosGoSDK.NumericRule : Swift.Sendable where T : Swift.Sendable {
+}
+public struct ArrayRule : Swift.Sendable {
+  public var minItems: Swift.Int?
+  public var maxItems: Swift.Int?
+  public var uniqueItems: Swift.Bool
+}
+public enum StringValidationErrorKind : Swift.Error, Swift.Sendable {
+  case minLength, maxLength, pattern
+  public static func == (a: BluePosGoSDK.StringValidationErrorKind, b: BluePosGoSDK.StringValidationErrorKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum NumericValidationErrorKind : Swift.Error, Swift.Sendable {
+  case minimum, maximum, multipleOf
+  public static func == (a: BluePosGoSDK.NumericValidationErrorKind, b: BluePosGoSDK.NumericValidationErrorKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public enum ArrayValidationErrorKind : Swift.Error, Swift.Sendable {
+  case minItems, maxItems, uniqueItems
+  public static func == (a: BluePosGoSDK.ArrayValidationErrorKind, b: BluePosGoSDK.ArrayValidationErrorKind) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+}
+public struct ValidationError<T> : Swift.Error, Swift.Sendable where T : Swift.Error, T : Swift.Hashable {
+  public var kinds: Swift.Set<T> {
+    get
+  }
+}
+public struct Validator : Swift.Sendable {
+  public static func validate(_ string: Swift.String, against rule: BluePosGoSDK.StringRule) throws(BluePosGoSDK.ValidationError<BluePosGoSDK.StringValidationErrorKind>) -> Swift.String
+  public static func validate<T>(_ numeric: T, against rule: BluePosGoSDK.NumericRule<T>) throws(BluePosGoSDK.ValidationError<BluePosGoSDK.NumericValidationErrorKind>) -> T where T : Swift.BinaryInteger
+  public static func validate<T>(_ numeric: T, against rule: BluePosGoSDK.NumericRule<T>) throws(BluePosGoSDK.ValidationError<BluePosGoSDK.NumericValidationErrorKind>) -> T where T : Swift.FloatingPoint
+  public static func validate(_ array: Swift.Array<Swift.AnyHashable>, against rule: BluePosGoSDK.ArrayRule) throws(BluePosGoSDK.ValidationError<BluePosGoSDK.ArrayValidationErrorKind>) -> Swift.Array<Swift.AnyHashable>
+}
+public enum AVSResponseCode : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case d
+  case f
+  case j
+  case m
+  case q
+  case v
+  case x
+  case y
+  case l
+  case w
+  case z
+  case a
+  case b
+  case o
+  case p
+  case k
+  case n
+  case u
+  case r
+  case s
+  case e
+  case c
+  case i
+  case g
+  case questionMark
+  case empty
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.AVSResponseCode]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.AVSResponseCode] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.AVSResponseCode {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct Address : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var address1: Swift.String
+  public var address2: Swift.String?
+  public var city: Swift.String
+  public var state: Swift.String
+  public var zip: Swift.String
+  public var country: Swift.String?
+  public var company: Swift.String?
+  public init(address1: Swift.String, address2: Swift.String? = nil, city: Swift.String, state: Swift.String, zip: Swift.String, country: Swift.String? = nil, company: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case address1
+    case address2
+    case city
+    case state
+    case zip
+    case country
+    case company
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.Address.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.Address.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.Address, b: BluePosGoSDK.Address) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Amounts : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let totalRule: BluePosGoSDK.StringRule
+  public var currency: BluePosGoSDK.Currency?
+  public var total: Swift.String?
+  public init(currency: BluePosGoSDK.Currency? = nil, total: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case currency
+    case total
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.Amounts.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.Amounts.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.Amounts, b: BluePosGoSDK.Amounts) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.Amounts {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct AmountsExtended : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let totalRule: BluePosGoSDK.StringRule
+  public static let gratuityRule: BluePosGoSDK.StringRule
+  public static let cashbackRule: BluePosGoSDK.StringRule
+  public var currency: BluePosGoSDK.Currency
+  public var total: Swift.String
+  public var gratuity: Swift.String?
+  public var cashback: Swift.String?
+  public init(currency: BluePosGoSDK.Currency, total: Swift.String, gratuity: Swift.String? = nil, cashback: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case currency
+    case total
+    case gratuity
+    case cashback
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.AmountsExtended.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.AmountsExtended.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.AmountsExtended, b: BluePosGoSDK.AmountsExtended) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.AmountsExtended {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct AmountsResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let approvedRule: BluePosGoSDK.StringRule
+  public static let requestedRule: BluePosGoSDK.StringRule
+  public static let gratuityRule: BluePosGoSDK.StringRule
+  public static let cashbackRule: BluePosGoSDK.StringRule
+  public static let surchargeRule: BluePosGoSDK.StringRule
+  public static let additionalFeeRule: BluePosGoSDK.StringRule
+  public static let balanceRule: BluePosGoSDK.StringRule
+  public var currency: BluePosGoSDK.Currency
+  public var approved: Swift.String
+  public var requested: Swift.String
+  public var gratuity: Swift.String?
+  public var cashback: Swift.String?
+  public var surcharge: Swift.String?
+  public var additionalFee: Swift.String?
+  public var balance: Swift.String?
+  public init(currency: BluePosGoSDK.Currency, approved: Swift.String, requested: Swift.String, gratuity: Swift.String? = nil, cashback: Swift.String? = nil, surcharge: Swift.String? = nil, additionalFee: Swift.String? = nil, balance: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case currency
+    case approved
+    case requested
+    case gratuity
+    case cashback
+    case surcharge
+    case additionalFee
+    case balance
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.AmountsResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.AmountsResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.AmountsResponse, b: BluePosGoSDK.AmountsResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.AmountsResponse {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct ApiViolation : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var message: Swift.String?
+  public var traceId: Foundation.UUID?
+  public var errorType: BluePosGoSDK.ErrorType?
+  public var errorCode: Swift.Int?
+  public var value: Swift.String?
+  public var source: Swift.String?
+  public var details: [BluePosGoSDK.ErrorDetail]?
+  public init(message: Swift.String? = nil, traceId: Foundation.UUID? = nil, errorType: BluePosGoSDK.ErrorType? = nil, errorCode: Swift.Int? = nil, value: Swift.String? = nil, source: Swift.String? = nil, details: [BluePosGoSDK.ErrorDetail]? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case message
+    case traceId
+    case errorType
+    case errorCode
+    case value
+    case source
+    case details
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ApiViolation.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ApiViolation.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ApiViolation, b: BluePosGoSDK.ApiViolation) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.ApiViolation {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public enum AuthMessageEnum : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case approved
+  case force
+  case partiallyApproved
+  case invalidCardNumber
+  case unknown
+  case declined
+  case ccvDeclined
+  case avsDeclined
+  case invalidTransaction
+  case processingException
+  case timeout
+  case invalidPin
+  case invalidExpiry
+  case suspectedFraud
+  case velocityCheckFailed
+  case captured
+  case pending
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.AuthMessageEnum]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.AuthMessageEnum] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.AuthMessageEnum {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct AuthResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var code: Swift.String?
+  public var message: BluePosGoSDK.AuthMessageEnum
+  public var processorMessage: Swift.String
+  public var networkName: Swift.String?
+  public var avsResponseCode: BluePosGoSDK.AVSResponseCode?
+  public var cvv2ResponseCode: BluePosGoSDK.CVV2ResponseCode?
+  public init(code: Swift.String? = nil, message: BluePosGoSDK.AuthMessageEnum, processorMessage: Swift.String, networkName: Swift.String? = nil, avsResponseCode: BluePosGoSDK.AVSResponseCode? = nil, cvv2ResponseCode: BluePosGoSDK.CVV2ResponseCode? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case code
+    case message
+    case processorMessage
+    case networkName
+    case avsResponseCode
+    case cvv2ResponseCode
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.AuthResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.AuthResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.AuthResponse, b: BluePosGoSDK.AuthResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.AuthResponse {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct BinDataResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum Program : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case standard
+    case unknown
+    case healthcare
+    case fleet
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.BinDataResponse.Program]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.BinDataResponse.Program] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum ProgramCard : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case fsa
+    case hsa
+    case hra
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.BinDataResponse.ProgramCard]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.BinDataResponse.ProgramCard] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var program: BluePosGoSDK.BinDataResponse.Program?
+  public var programCard: BluePosGoSDK.BinDataResponse.ProgramCard?
+  public init(program: BluePosGoSDK.BinDataResponse.Program? = nil, programCard: BluePosGoSDK.BinDataResponse.ProgramCard? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case program
+    case programCard
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.BinDataResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.BinDataResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.BinDataResponse, b: BluePosGoSDK.BinDataResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.BinDataResponse {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct CVM : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum Method : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case signature
+    case offlinePin
+    case onlinePin
+    case noCvmRequired
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.CVM.Method]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CVM.Method] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var method: BluePosGoSDK.CVM.Method
+  public var signature: Swift.String?
+  public init(method: BluePosGoSDK.CVM.Method, signature: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case method
+    case signature
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CVM.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CVM.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CVM, b: BluePosGoSDK.CVM) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.CVM {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public enum CVV2ResponseCode : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case m
+  case n
+  case p
+  case s
+  case u
+  case questionMark
+  case empty
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.CVV2ResponseCode]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.CVV2ResponseCode] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.CVV2ResponseCode {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct CancelRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var timeout: Swift.Int?
+  public init(timeout: Swift.Int? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CancelRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CancelRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CancelRequest, b: BluePosGoSDK.CancelRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct CancelResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let statusRule: BluePosGoSDK.StringRule
+  public var status: Swift.String?
+  public init(status: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case status
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CancelResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CancelResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CancelResponse, b: BluePosGoSDK.CancelResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct CaptureSignatureResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var signature: Swift.String?
+  public init(signature: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case signature
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CaptureSignatureResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CaptureSignatureResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CaptureSignatureResponse, b: BluePosGoSDK.CaptureSignatureResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum CardBrand : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case visa
+  case mastercard
+  case discover
+  case americanExpress
+  case jcb
+  case dinersClub
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.CardBrand]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.CardBrand] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.CardBrand {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct CardResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let nameRule: BluePosGoSDK.StringRule
+  public static let last4Rule: BluePosGoSDK.StringRule
+  public static let expiryRule: BluePosGoSDK.StringRule
+  public var name: Swift.String?
+  public var brand: BluePosGoSDK.CardBrand?
+  public var bin: Swift.String?
+  public var last4: Swift.String?
+  public var expiry: Swift.String?
+  public init(name: Swift.String? = nil, brand: BluePosGoSDK.CardBrand? = nil, bin: Swift.String? = nil, last4: Swift.String? = nil, expiry: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case name
+    case brand
+    case bin
+    case last4
+    case expiry
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CardResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CardResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CardResponse, b: BluePosGoSDK.CardResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.CardResponse {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct ClickToPayTraceData : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var merchantTransactionId: Swift.String
+  public var correlationId: Swift.String
+  public var srcFlowId: Swift.String
+  public init(merchantTransactionId: Swift.String, correlationId: Swift.String, srcFlowId: Swift.String)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case merchantTransactionId
+    case correlationId
+    case srcFlowId
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ClickToPayTraceData.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ClickToPayTraceData.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ClickToPayTraceData, b: BluePosGoSDK.ClickToPayTraceData) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct CreditRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let transactionIdRule: BluePosGoSDK.StringRule
+  public static let mmIdRule: BluePosGoSDK.NumericRule<Swift.Int>
+  public var timeout: Swift.Int?
+  public var transactionId: Swift.String?
+  public var mmId: Swift.Int?
+  public var amounts: BluePosGoSDK.Amounts
+  public var description: Swift.String?
+  public var trace: BluePosGoSDK.Trace?
+  public var savePayment: Swift.Bool?
+  public init(timeout: Swift.Int? = nil, transactionId: Swift.String? = nil, mmId: Swift.Int? = nil, amounts: BluePosGoSDK.Amounts, description: Swift.String? = nil, trace: BluePosGoSDK.Trace? = nil, savePayment: Swift.Bool? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case transactionId
+    case mmId
+    case amounts
+    case description
+    case trace
+    case savePayment
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CreditRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CreditRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CreditRequest, b: BluePosGoSDK.CreditRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum Currency : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case usd
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.Currency]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.Currency] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.Currency {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct CustomReceiptRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var timeout: Swift.Int?
+  public var content: Swift.String
+  public init(timeout: Swift.Int? = nil, content: Swift.String)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case content
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.CustomReceiptRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.CustomReceiptRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.CustomReceiptRequest, b: BluePosGoSDK.CustomReceiptRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Customer : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let nameRule: BluePosGoSDK.StringRule
+  public static let phoneRule: BluePosGoSDK.StringRule
+  public var name: Swift.String?
+  public var email: Swift.String?
+  public var phone: Swift.String?
+  public var billingAddress: BluePosGoSDK.Address?
+  public init(name: Swift.String? = nil, email: Swift.String? = nil, phone: Swift.String? = nil, billingAddress: BluePosGoSDK.Address? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case name
+    case email
+    case phone
+    case billingAddress
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.Customer.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.Customer.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.Customer, b: BluePosGoSDK.Customer) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct EBT : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum ModelType : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case cash
+    case voucher
+    case food
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.EBT.ModelType]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.EBT.ModelType] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var type: BluePosGoSDK.EBT.ModelType
+  public var voucherNumber: Swift.String?
+  public init(type: BluePosGoSDK.EBT.ModelType, voucherNumber: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case type
+    case voucherNumber
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.EBT.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.EBT.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.EBT, b: BluePosGoSDK.EBT) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.EBT {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct EmvDataResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var aid: Swift.String?
+  public var appLabel: Swift.String?
+  public var tvr: Swift.String?
+  public var tsi: Swift.String?
+  public var arc: Swift.String?
+  public var atc: Swift.String?
+  public var cryptogram: Swift.String?
+  public var entryMode: Swift.String?
+  public var contactless: Swift.Bool?
+  public init(aid: Swift.String? = nil, appLabel: Swift.String? = nil, tvr: Swift.String? = nil, tsi: Swift.String? = nil, arc: Swift.String? = nil, atc: Swift.String? = nil, cryptogram: Swift.String? = nil, entryMode: Swift.String? = nil, contactless: Swift.Bool? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case aid
+    case appLabel
+    case tvr
+    case tsi
+    case arc
+    case atc
+    case cryptogram
+    case entryMode
+    case contactless
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.EmvDataResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.EmvDataResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.EmvDataResponse, b: BluePosGoSDK.EmvDataResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ErrorDetail : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var source: Swift.String?
+  public var value: Swift.String?
+  public var message: Swift.String?
+  public init(source: Swift.String? = nil, value: Swift.String? = nil, message: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case source
+    case value
+    case message
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ErrorDetail.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ErrorDetail.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ErrorDetail, b: BluePosGoSDK.ErrorDetail) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum ErrorType : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case authentication
+  case authorization
+  case decryptxError
+  case internalServerError
+  case invalidRequest
+  case methodNotAllowed
+  case notFound
+  case poiError
+  case serviceUnavailable
+  case shieldconexError
+  case timeout
+  case transactionError
+  case websocketGatewayError
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.ErrorType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.ErrorType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.ErrorType {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct ForceRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let transactionIdRule: BluePosGoSDK.StringRule
+  public static let mmIdRule: BluePosGoSDK.NumericRule<Swift.Int>
+  public var timeout: Swift.Int?
+  public var transactionId: Swift.String?
+  public var mmId: Swift.Int?
+  public var authCode: Swift.String
+  public var amounts: BluePosGoSDK.AmountsExtended
+  public var description: Swift.String?
+  public var trace: BluePosGoSDK.Trace?
+  public var customer: BluePosGoSDK.Customer?
+  public var shippingAddress: BluePosGoSDK.ShippingAddress?
+  public var savePayment: Swift.Bool?
+  public init(timeout: Swift.Int? = nil, transactionId: Swift.String? = nil, mmId: Swift.Int? = nil, authCode: Swift.String, amounts: BluePosGoSDK.AmountsExtended, description: Swift.String? = nil, trace: BluePosGoSDK.Trace? = nil, customer: BluePosGoSDK.Customer? = nil, shippingAddress: BluePosGoSDK.ShippingAddress? = nil, savePayment: Swift.Bool? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case transactionId
+    case mmId
+    case authCode
+    case amounts
+    case description
+    case trace
+    case customer
+    case shippingAddress
+    case savePayment
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ForceRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ForceRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ForceRequest, b: BluePosGoSDK.ForceRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct GpsLocation : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var latitude: Swift.String
+  public var longitude: Swift.String
+  public var accuracy: Swift.String?
+  public init(latitude: Swift.String, longitude: Swift.String, accuracy: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case latitude
+    case longitude
+    case accuracy
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.GpsLocation.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.GpsLocation.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.GpsLocation, b: BluePosGoSDK.GpsLocation) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct Healthcare : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let totalAmountRule: BluePosGoSDK.StringRule
+  public static let prescriptionRule: BluePosGoSDK.StringRule
+  public static let visionRule: BluePosGoSDK.StringRule
+  public static let dentalRule: BluePosGoSDK.StringRule
+  public static let clinicalRule: BluePosGoSDK.StringRule
+  public static let copayRule: BluePosGoSDK.StringRule
+  public static let transitRule: BluePosGoSDK.StringRule
+  public var totalAmount: Swift.String?
+  public var prescription: Swift.String?
+  public var vision: Swift.String?
+  public var dental: Swift.String?
+  public var clinical: Swift.String?
+  public var copay: Swift.String?
+  public var transit: Swift.String?
+  public init(totalAmount: Swift.String? = nil, prescription: Swift.String? = nil, vision: Swift.String? = nil, dental: Swift.String? = nil, clinical: Swift.String? = nil, copay: Swift.String? = nil, transit: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case totalAmount
+    case prescription
+    case vision
+    case dental
+    case clinical
+    case copay
+    case transit
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.Healthcare.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.Healthcare.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.Healthcare, b: BluePosGoSDK.Healthcare) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ListTransactionResponseInstance : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum TransactionType : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case sale
+    case authorization
+    case refund
+    case credit
+    case debit
+    case store
+    case force
+    case reversal
+    case balance
+    case void
+    case _init
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.ListTransactionResponseInstance.TransactionType]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ListTransactionResponseInstance.TransactionType] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let transactionIdRule: BluePosGoSDK.StringRule
+  public static let referenceRule: BluePosGoSDK.StringRule
+  public static let bfTokenReferenceRule: BluePosGoSDK.StringRule
+  public var status: BluePosGoSDK.Status?
+  public var transactionId: Swift.String?
+  public var authMessage: Swift.String?
+  public var authCode: Swift.String?
+  public var approvedAmount: Swift.String?
+  public var transactionType: BluePosGoSDK.ListTransactionResponseInstance.TransactionType?
+  public var timestamp: Foundation.Date?
+  public var reference: Swift.String?
+  public var cardType: Swift.String?
+  public var entryMode: BluePosGoSDK.ResponseEntryMode?
+  public var last4: Swift.String?
+  public var bfTokenReference: Swift.String?
+  public init(status: BluePosGoSDK.Status? = nil, transactionId: Swift.String? = nil, authMessage: Swift.String? = nil, authCode: Swift.String? = nil, approvedAmount: Swift.String? = nil, transactionType: BluePosGoSDK.ListTransactionResponseInstance.TransactionType? = nil, timestamp: Foundation.Date? = nil, reference: Swift.String? = nil, cardType: Swift.String? = nil, entryMode: BluePosGoSDK.ResponseEntryMode? = nil, last4: Swift.String? = nil, bfTokenReference: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case status
+    case transactionId
+    case authMessage
+    case authCode
+    case approvedAmount
+    case transactionType
+    case timestamp
+    case reference
+    case cardType
+    case entryMode
+    case last4
+    case bfTokenReference
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ListTransactionResponseInstance.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ListTransactionResponseInstance.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ListTransactionResponseInstance, b: BluePosGoSDK.ListTransactionResponseInstance) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.ListTransactionResponseInstance {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct ModelError : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var code: Swift.Int
+  public var message: Swift.String
+  public init(code: Swift.Int, message: Swift.String)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case code
+    case message
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ModelError.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ModelError.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ModelError, b: BluePosGoSDK.ModelError) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PoslinkRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var timeout: Swift.Int?
+  public var command: Swift.String
+  public init(timeout: Swift.Int? = nil, command: Swift.String)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case command
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.PoslinkRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.PoslinkRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.PoslinkRequest, b: BluePosGoSDK.PoslinkRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct PoslinkResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var response: Swift.String?
+  public init(response: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case response
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.PoslinkResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.PoslinkResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.PoslinkResponse, b: BluePosGoSDK.PoslinkResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ProcessPoiRebootRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let delayInSecondsRule: BluePosGoSDK.NumericRule<Swift.Int>
+  public var timeout: Swift.Int?
+  public var allowOverride: Swift.Bool?
+  public var delayInSeconds: Swift.Int?
+  public init(timeout: Swift.Int? = nil, allowOverride: Swift.Bool? = nil, delayInSeconds: Swift.Int? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case allowOverride
+    case delayInSeconds
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ProcessPoiRebootRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ProcessPoiRebootRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ProcessPoiRebootRequest, b: BluePosGoSDK.ProcessPoiRebootRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ReceiptResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var outcome: Swift.String?
+  public init(outcome: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case outcome
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ReceiptResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ReceiptResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ReceiptResponse, b: BluePosGoSDK.ReceiptResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct RefundRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var timeout: Swift.Int?
+  public var amounts: BluePosGoSDK.Amounts?
+  public var description: Swift.String?
+  public var trace: BluePosGoSDK.Trace?
+  public var customer: BluePosGoSDK.Customer?
+  public var shippingAddress: BluePosGoSDK.ShippingAddress?
+  public init(timeout: Swift.Int? = nil, amounts: BluePosGoSDK.Amounts? = nil, description: Swift.String? = nil, trace: BluePosGoSDK.Trace? = nil, customer: BluePosGoSDK.Customer? = nil, shippingAddress: BluePosGoSDK.ShippingAddress? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case amounts
+    case description
+    case trace
+    case customer
+    case shippingAddress
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.RefundRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.RefundRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.RefundRequest, b: BluePosGoSDK.RefundRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ReprintReceiptRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum Copy : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case customer
+    case merchant
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.ReprintReceiptRequest.Copy]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ReprintReceiptRequest.Copy] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum TransType : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case auth
+    case capture
+    case sale
+    case refund
+    case reversal
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.ReprintReceiptRequest.TransType]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ReprintReceiptRequest.TransType] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let transactionIdRule: BluePosGoSDK.StringRule
+  public var mmid: Swift.Int?
+  public var transactionId: Swift.String
+  public var copy: BluePosGoSDK.ReprintReceiptRequest.Copy
+  public var transType: BluePosGoSDK.ReprintReceiptRequest.TransType?
+  public var additionalInfo: Swift.String?
+  public init(mmid: Swift.Int? = nil, transactionId: Swift.String, copy: BluePosGoSDK.ReprintReceiptRequest.Copy, transType: BluePosGoSDK.ReprintReceiptRequest.TransType? = nil, additionalInfo: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case mmid
+    case transactionId
+    case copy
+    case transType
+    case additionalInfo
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ReprintReceiptRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ReprintReceiptRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ReprintReceiptRequest, b: BluePosGoSDK.ReprintReceiptRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.ReprintReceiptRequest {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public enum ResponseEntryMode : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case contact
+  case contactless
+  case nfc
+  case swipe
+  case keyed
+  case fallbackSwipe
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.ResponseEntryMode]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.ResponseEntryMode] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.ResponseEntryMode {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct SaleAndAuthRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let transactionIdRule: BluePosGoSDK.StringRule
+  public static let mmIdRule: BluePosGoSDK.NumericRule<Swift.Int>
+  public var timeout: Swift.Int?
+  public var transactionId: Swift.String?
+  public var amounts: BluePosGoSDK.AmountsExtended
+  public var mmId: Swift.Int?
+  public var description: Swift.String?
+  public var trace: BluePosGoSDK.Trace?
+  public var healthcare: BluePosGoSDK.Healthcare?
+  public var customer: BluePosGoSDK.Customer?
+  public var shippingAddress: BluePosGoSDK.ShippingAddress?
+  public var ebt: BluePosGoSDK.EBT?
+  public var savePayment: Swift.Bool?
+  public init(timeout: Swift.Int? = nil, transactionId: Swift.String? = nil, amounts: BluePosGoSDK.AmountsExtended, mmId: Swift.Int? = nil, description: Swift.String? = nil, trace: BluePosGoSDK.Trace? = nil, healthcare: BluePosGoSDK.Healthcare? = nil, customer: BluePosGoSDK.Customer? = nil, shippingAddress: BluePosGoSDK.ShippingAddress? = nil, ebt: BluePosGoSDK.EBT? = nil, savePayment: Swift.Bool? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case transactionId
+    case amounts
+    case mmId
+    case description
+    case trace
+    case healthcare
+    case customer
+    case shippingAddress
+    case ebt
+    case savePayment
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.SaleAndAuthRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.SaleAndAuthRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.SaleAndAuthRequest, b: BluePosGoSDK.SaleAndAuthRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShieldConexCardToken : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var bfid: Swift.String
+  public var cardNumber: Swift.String?
+  public var cardExpiration: Swift.String?
+  public init(bfid: Swift.String, cardNumber: Swift.String? = nil, cardExpiration: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case bfid
+    case cardNumber
+    case cardExpiration
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ShieldConexCardToken.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShieldConexCardToken.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ShieldConexCardToken, b: BluePosGoSDK.ShieldConexCardToken) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShippingAddress : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var address1: Swift.String
+  public var address2: Swift.String?
+  public var city: Swift.String
+  public var state: Swift.String
+  public var zip: Swift.String
+  public var country: Swift.String
+  public var company: Swift.String?
+  public var recipient: Swift.String
+  public var recipientPhone: Swift.String?
+  public var recipientEmail: Swift.String?
+  public init(address1: Swift.String, address2: Swift.String? = nil, city: Swift.String, state: Swift.String, zip: Swift.String, country: Swift.String, company: Swift.String? = nil, recipient: Swift.String, recipientPhone: Swift.String? = nil, recipientEmail: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case address1
+    case address2
+    case city
+    case state
+    case zip
+    case country
+    case company
+    case recipient
+    case recipientPhone
+    case recipientEmail
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ShippingAddress.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShippingAddress.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ShippingAddress, b: BluePosGoSDK.ShippingAddress) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShowDialogRequest : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var timeout: Swift.Int?
+  public var title: Swift.String
+  public var button1: Swift.String?
+  public var button2: Swift.String?
+  public var button3: Swift.String?
+  public var button4: Swift.String?
+  public var body: Swift.String?
+  public var requiresSignature: Swift.Bool?
+  public var style: BluePosGoSDK.ShowDialogStyle?
+  public init(timeout: Swift.Int? = nil, title: Swift.String, button1: Swift.String? = nil, button2: Swift.String? = nil, button3: Swift.String? = nil, button4: Swift.String? = nil, body: Swift.String? = nil, requiresSignature: Swift.Bool? = nil, style: BluePosGoSDK.ShowDialogStyle? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case timeout
+    case title
+    case button1
+    case button2
+    case button3
+    case button4
+    case body
+    case requiresSignature
+    case style
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ShowDialogRequest.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShowDialogRequest.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ShowDialogRequest, b: BluePosGoSDK.ShowDialogRequest) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShowDialogResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var selected: Swift.String?
+  public init(selected: Swift.String? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case selected
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ShowDialogResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShowDialogResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ShowDialogResponse, b: BluePosGoSDK.ShowDialogResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ShowDialogStyle : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum TextColor : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case light
+    case light2
+    case dark
+    case dark2
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.ShowDialogStyle.TextColor]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShowDialogStyle.TextColor] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum TextSize : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case small
+    case small2
+    case medium
+    case medium2
+    case large
+    case large2
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.ShowDialogStyle.TextSize]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShowDialogStyle.TextSize] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public static let backgroundColorRule: BluePosGoSDK.StringRule
+  public var backgroundColor: Swift.String?
+  public var textColor: BluePosGoSDK.ShowDialogStyle.TextColor?
+  public var textSize: BluePosGoSDK.ShowDialogStyle.TextSize?
+  public init(backgroundColor: Swift.String? = nil, textColor: BluePosGoSDK.ShowDialogStyle.TextColor? = nil, textSize: BluePosGoSDK.ShowDialogStyle.TextSize? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case backgroundColor
+    case textColor
+    case textSize
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.ShowDialogStyle.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.ShowDialogStyle.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.ShowDialogStyle, b: BluePosGoSDK.ShowDialogStyle) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.ShowDialogStyle {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public enum Status : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case approved
+  case declined
+  case failed
+  case pending
+  case initialized
+  case authorized
+  case saved
+  case refunded
+  case voided
+  case captured
+  case force
+  case credited
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.Status]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.Status] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.Status {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct StatusResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public var serial: Swift.String?
+  public var modelName: Swift.String?
+  public var osVersion: Swift.String?
+  public var macAddress: Swift.String?
+  public var ipAddress: Swift.String?
+  public var linesPerScreen: Swift.Int?
+  public var charsPerLine: Swift.Int?
+  public var appVersion: Swift.String?
+  public var timestamp: Foundation.Date?
+  public init(serial: Swift.String? = nil, modelName: Swift.String? = nil, osVersion: Swift.String? = nil, macAddress: Swift.String? = nil, ipAddress: Swift.String? = nil, linesPerScreen: Swift.Int? = nil, charsPerLine: Swift.Int? = nil, appVersion: Swift.String? = nil, timestamp: Foundation.Date? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case serial
+    case modelName
+    case osVersion
+    case macAddress
+    case ipAddress
+    case linesPerScreen
+    case charsPerLine
+    case appVersion
+    case timestamp
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.StatusResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.StatusResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.StatusResponse, b: BluePosGoSDK.StatusResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum TenderType : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+  case credit
+  case debit
+  case ebt
+  case fsa
+  case unknownDefaultOpenApi
+  public init?(rawValue: Swift.String)
+  public typealias AllCases = [BluePosGoSDK.TenderType]
+  public typealias RawValue = Swift.String
+  nonisolated public static var allCases: [BluePosGoSDK.TenderType] {
+    get
+  }
+  public var rawValue: Swift.String {
+    get
+  }
+}
+extension BluePosGoSDK.TenderType {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct Trace : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let extTransactionIdRule: BluePosGoSDK.StringRule
+  public static let tagsRule: BluePosGoSDK.ArrayRule
+  public var cashier: Swift.String?
+  public var clientIp: Swift.String?
+  public var customId: Swift.String?
+  public var timestamp: Foundation.Date?
+  public var extTransactionId: Swift.String?
+  public var tags: [Swift.String]?
+  public init(cashier: Swift.String? = nil, clientIp: Swift.String? = nil, customId: Swift.String? = nil, timestamp: Foundation.Date? = nil, extTransactionId: Swift.String? = nil, tags: [Swift.String]? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case cashier
+    case clientIp
+    case customId
+    case timestamp
+    case extTransactionId
+    case tags
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.Trace.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.Trace.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.Trace, b: BluePosGoSDK.Trace) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct TraceResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let extTransactionIdRule: BluePosGoSDK.StringRule
+  public var cashier: Swift.String?
+  public var clientIp: Swift.String?
+  public var sourceIp: Swift.String?
+  public var source: Swift.String?
+  public var gpsLocation: BluePosGoSDK.GpsLocation?
+  public var customId: Swift.String?
+  public var timestamp: Foundation.Date?
+  public var extTransactionId: Swift.String?
+  public var networkTransactionId: Swift.String?
+  public var tags: [Swift.String]?
+  public var history: [BluePosGoSDK.TransactionHistoryRecord]?
+  public var clickToPayTraceData: BluePosGoSDK.ClickToPayTraceData?
+  public init(cashier: Swift.String? = nil, clientIp: Swift.String? = nil, sourceIp: Swift.String? = nil, source: Swift.String? = nil, gpsLocation: BluePosGoSDK.GpsLocation? = nil, customId: Swift.String? = nil, timestamp: Foundation.Date? = nil, extTransactionId: Swift.String? = nil, networkTransactionId: Swift.String? = nil, tags: [Swift.String]? = nil, history: [BluePosGoSDK.TransactionHistoryRecord]? = nil, clickToPayTraceData: BluePosGoSDK.ClickToPayTraceData? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case cashier
+    case clientIp
+    case sourceIp
+    case source
+    case gpsLocation
+    case customId
+    case timestamp
+    case extTransactionId
+    case networkTransactionId
+    case tags
+    case history
+    case clickToPayTraceData
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.TraceResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.TraceResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.TraceResponse, b: BluePosGoSDK.TraceResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct TransactionHistoryRecord : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public enum Action : Swift.String, Swift.Sendable, Swift.Codable, Swift.CaseIterable {
+    case _init
+    case update
+    case authorization
+    case capture
+    case transaction
+    case refund
+    case unknownDefaultOpenApi
+    public init?(rawValue: Swift.String)
+    public typealias AllCases = [BluePosGoSDK.TransactionHistoryRecord.Action]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.TransactionHistoryRecord.Action] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public var action: BluePosGoSDK.TransactionHistoryRecord.Action?
+  public var requestId: Swift.String?
+  public var correlationId: Swift.String?
+  public var timestamp: Foundation.Date?
+  public init(action: BluePosGoSDK.TransactionHistoryRecord.Action? = nil, requestId: Swift.String? = nil, correlationId: Swift.String? = nil, timestamp: Foundation.Date? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case action
+    case requestId
+    case correlationId
+    case timestamp
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.TransactionHistoryRecord.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.TransactionHistoryRecord.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.TransactionHistoryRecord, b: BluePosGoSDK.TransactionHistoryRecord) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.TransactionHistoryRecord {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+public struct TransactionResponse : Swift.Sendable, Swift.Codable, Swift.Hashable {
+  public static let referenceRule: BluePosGoSDK.StringRule
+  public static let bfTokenReferenceRule: BluePosGoSDK.StringRule
+  public var status: BluePosGoSDK.Status?
+  public var amounts: BluePosGoSDK.AmountsResponse?
+  public var customer: BluePosGoSDK.Customer?
+  public var description: Swift.String?
+  public var shippingAddress: BluePosGoSDK.ShippingAddress?
+  public var trace: BluePosGoSDK.TraceResponse?
+  public var reference: Swift.String?
+  public var bfTokenReference: Swift.String?
+  public var transactionId: Swift.String?
+  public var shieldConexToken: BluePosGoSDK.ShieldConexCardToken?
+  public var card: BluePosGoSDK.CardResponse?
+  public var auth: BluePosGoSDK.AuthResponse?
+  public var emv: BluePosGoSDK.EmvDataResponse?
+  public var binData: BluePosGoSDK.BinDataResponse?
+  public var cvm: BluePosGoSDK.CVM?
+  public var tenderType: BluePosGoSDK.TenderType?
+  public init(status: BluePosGoSDK.Status? = nil, amounts: BluePosGoSDK.AmountsResponse? = nil, customer: BluePosGoSDK.Customer? = nil, description: Swift.String? = nil, shippingAddress: BluePosGoSDK.ShippingAddress? = nil, trace: BluePosGoSDK.TraceResponse? = nil, reference: Swift.String? = nil, bfTokenReference: Swift.String? = nil, transactionId: Swift.String? = nil, shieldConexToken: BluePosGoSDK.ShieldConexCardToken? = nil, card: BluePosGoSDK.CardResponse? = nil, auth: BluePosGoSDK.AuthResponse? = nil, emv: BluePosGoSDK.EmvDataResponse? = nil, binData: BluePosGoSDK.BinDataResponse? = nil, cvm: BluePosGoSDK.CVM? = nil, tenderType: BluePosGoSDK.TenderType? = nil)
+  public enum CodingKeys : Swift.String, Swift.CodingKey, Swift.CaseIterable {
+    case status
+    case amounts
+    case customer
+    case description
+    case shippingAddress
+    case trace
+    case reference
+    case bfTokenReference
+    case transactionId
+    case shieldConexToken
+    case card
+    case auth
+    case emv
+    case binData
+    case cvm
+    case tenderType
+    public init?(rawValue: Swift.String)
+    public init?(stringValue: Swift.String)
+    public init?(intValue: Swift.Int)
+    public typealias AllCases = [BluePosGoSDK.TransactionResponse.CodingKeys]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [BluePosGoSDK.TransactionResponse.CodingKeys] {
+      get
+    }
+    public var intValue: Swift.Int? {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+    public var stringValue: Swift.String {
+      get
+    }
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public static func == (a: BluePosGoSDK.TransactionResponse, b: BluePosGoSDK.TransactionResponse) -> Swift.Bool
+  public func hash(into hasher: inout Swift.Hasher)
+  public var hashValue: Swift.Int {
+    get
+  }
+  public init(from decoder: any Swift.Decoder) throws
+}
+extension BluePosGoSDK.TransactionResponse {
+  public var containsUnknownDefaultOpenApiCase: Swift.Bool {
+    get
+  }
+}
+extension BluePosGoSDK.BluePosGo : Swift.Sendable {}
+extension BluePosGoSDK.BluePosGoTransactionType : Swift.Equatable {}
+extension BluePosGoSDK.BluePosGoTransactionType : Swift.Hashable {}
+extension BluePosGoSDK.BluePosGoTransactionType : Swift.RawRepresentable {}
+extension BluePosGoSDK.BluePosLogLevel : Swift.Equatable {}
+extension BluePosGoSDK.BluePosLogLevel : Swift.Hashable {}
+extension BluePosGoSDK.BluePosLogLevel : Swift.RawRepresentable {}
+extension BluePosGoSDK.PaymentTransactionType : Swift.Equatable {}
+extension BluePosGoSDK.PaymentTransactionType : Swift.Hashable {}
+extension BluePosGoSDK.PaymentTransactionType : Swift.RawRepresentable {}
+extension BluePosGoSDK.DownloadException : Swift.Equatable {}
+extension BluePosGoSDK.DownloadException : Swift.Hashable {}
+extension BluePosGoSDK.HTTPMethod : Swift.Equatable {}
+extension BluePosGoSDK.HTTPMethod : Swift.Hashable {}
+extension BluePosGoSDK.HTTPMethod : Swift.RawRepresentable {}
+extension BluePosGoSDK.OpenAPIInterceptorRetry : Swift.Equatable {}
+extension BluePosGoSDK.OpenAPIInterceptorRetry : Swift.Hashable {}
+extension BluePosGoSDK.StringValidationErrorKind : Swift.Equatable {}
+extension BluePosGoSDK.StringValidationErrorKind : Swift.Hashable {}
+extension BluePosGoSDK.NumericValidationErrorKind : Swift.Equatable {}
+extension BluePosGoSDK.NumericValidationErrorKind : Swift.Hashable {}
+extension BluePosGoSDK.ArrayValidationErrorKind : Swift.Equatable {}
+extension BluePosGoSDK.ArrayValidationErrorKind : Swift.Hashable {}
+extension BluePosGoSDK.AVSResponseCode : Swift.RawRepresentable {}
+extension BluePosGoSDK.AVSResponseCode : Swift.Equatable {}
+extension BluePosGoSDK.AVSResponseCode : Swift.Hashable {}
+extension BluePosGoSDK.Address.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.Address.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.Address.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.Amounts.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.Amounts.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.Amounts.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.AmountsExtended.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.AmountsExtended.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.AmountsExtended.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.AmountsResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.AmountsResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.AmountsResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ApiViolation.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ApiViolation.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ApiViolation.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.AuthMessageEnum : Swift.RawRepresentable {}
+extension BluePosGoSDK.AuthMessageEnum : Swift.Equatable {}
+extension BluePosGoSDK.AuthMessageEnum : Swift.Hashable {}
+extension BluePosGoSDK.AuthResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.AuthResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.AuthResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.BinDataResponse.Program : Swift.RawRepresentable {}
+extension BluePosGoSDK.BinDataResponse.Program : Swift.Equatable {}
+extension BluePosGoSDK.BinDataResponse.Program : Swift.Hashable {}
+extension BluePosGoSDK.BinDataResponse.ProgramCard : Swift.RawRepresentable {}
+extension BluePosGoSDK.BinDataResponse.ProgramCard : Swift.Equatable {}
+extension BluePosGoSDK.BinDataResponse.ProgramCard : Swift.Hashable {}
+extension BluePosGoSDK.BinDataResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.BinDataResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.BinDataResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CVM.Method : Swift.RawRepresentable {}
+extension BluePosGoSDK.CVM.Method : Swift.Equatable {}
+extension BluePosGoSDK.CVM.Method : Swift.Hashable {}
+extension BluePosGoSDK.CVM.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CVM.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CVM.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CVV2ResponseCode : Swift.RawRepresentable {}
+extension BluePosGoSDK.CVV2ResponseCode : Swift.Equatable {}
+extension BluePosGoSDK.CVV2ResponseCode : Swift.Hashable {}
+extension BluePosGoSDK.CancelRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CancelRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CancelRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CancelResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CancelResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CancelResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CaptureSignatureResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CaptureSignatureResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CaptureSignatureResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CardBrand : Swift.RawRepresentable {}
+extension BluePosGoSDK.CardBrand : Swift.Equatable {}
+extension BluePosGoSDK.CardBrand : Swift.Hashable {}
+extension BluePosGoSDK.CardResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CardResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CardResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ClickToPayTraceData.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ClickToPayTraceData.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ClickToPayTraceData.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.CreditRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CreditRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CreditRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.Currency : Swift.RawRepresentable {}
+extension BluePosGoSDK.Currency : Swift.Equatable {}
+extension BluePosGoSDK.Currency : Swift.Hashable {}
+extension BluePosGoSDK.CustomReceiptRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.CustomReceiptRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.CustomReceiptRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.Customer.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.Customer.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.Customer.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.EBT.ModelType : Swift.RawRepresentable {}
+extension BluePosGoSDK.EBT.ModelType : Swift.Equatable {}
+extension BluePosGoSDK.EBT.ModelType : Swift.Hashable {}
+extension BluePosGoSDK.EBT.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.EBT.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.EBT.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.EmvDataResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.EmvDataResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.EmvDataResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ErrorDetail.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ErrorDetail.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ErrorDetail.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ErrorType : Swift.RawRepresentable {}
+extension BluePosGoSDK.ErrorType : Swift.Equatable {}
+extension BluePosGoSDK.ErrorType : Swift.Hashable {}
+extension BluePosGoSDK.ForceRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ForceRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ForceRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.GpsLocation.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.GpsLocation.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.GpsLocation.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.Healthcare.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.Healthcare.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.Healthcare.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.TransactionType : Swift.RawRepresentable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.TransactionType : Swift.Equatable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.TransactionType : Swift.Hashable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ListTransactionResponseInstance.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ModelError.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ModelError.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ModelError.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.PoslinkRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.PoslinkRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.PoslinkRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.PoslinkResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.PoslinkResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.PoslinkResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ProcessPoiRebootRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ProcessPoiRebootRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ProcessPoiRebootRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ReceiptResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ReceiptResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ReceiptResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.RefundRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.RefundRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.RefundRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ReprintReceiptRequest.Copy : Swift.RawRepresentable {}
+extension BluePosGoSDK.ReprintReceiptRequest.Copy : Swift.Equatable {}
+extension BluePosGoSDK.ReprintReceiptRequest.Copy : Swift.Hashable {}
+extension BluePosGoSDK.ReprintReceiptRequest.TransType : Swift.RawRepresentable {}
+extension BluePosGoSDK.ReprintReceiptRequest.TransType : Swift.Equatable {}
+extension BluePosGoSDK.ReprintReceiptRequest.TransType : Swift.Hashable {}
+extension BluePosGoSDK.ReprintReceiptRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ReprintReceiptRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ReprintReceiptRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ResponseEntryMode : Swift.RawRepresentable {}
+extension BluePosGoSDK.ResponseEntryMode : Swift.Equatable {}
+extension BluePosGoSDK.ResponseEntryMode : Swift.Hashable {}
+extension BluePosGoSDK.SaleAndAuthRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.SaleAndAuthRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.SaleAndAuthRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShieldConexCardToken.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ShieldConexCardToken.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ShieldConexCardToken.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShippingAddress.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ShippingAddress.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ShippingAddress.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShowDialogRequest.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ShowDialogRequest.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ShowDialogRequest.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShowDialogResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ShowDialogResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ShowDialogResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShowDialogStyle.TextColor : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShowDialogStyle.TextColor : Swift.Equatable {}
+extension BluePosGoSDK.ShowDialogStyle.TextColor : Swift.Hashable {}
+extension BluePosGoSDK.ShowDialogStyle.TextSize : Swift.RawRepresentable {}
+extension BluePosGoSDK.ShowDialogStyle.TextSize : Swift.Equatable {}
+extension BluePosGoSDK.ShowDialogStyle.TextSize : Swift.Hashable {}
+extension BluePosGoSDK.ShowDialogStyle.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.ShowDialogStyle.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.ShowDialogStyle.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.Status : Swift.RawRepresentable {}
+extension BluePosGoSDK.Status : Swift.Equatable {}
+extension BluePosGoSDK.Status : Swift.Hashable {}
+extension BluePosGoSDK.StatusResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.StatusResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.StatusResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.TenderType : Swift.RawRepresentable {}
+extension BluePosGoSDK.TenderType : Swift.Equatable {}
+extension BluePosGoSDK.TenderType : Swift.Hashable {}
+extension BluePosGoSDK.Trace.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.Trace.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.Trace.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.TraceResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.TraceResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.TraceResponse.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.TransactionHistoryRecord.Action : Swift.RawRepresentable {}
+extension BluePosGoSDK.TransactionHistoryRecord.Action : Swift.Equatable {}
+extension BluePosGoSDK.TransactionHistoryRecord.Action : Swift.Hashable {}
+extension BluePosGoSDK.TransactionHistoryRecord.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.TransactionHistoryRecord.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.TransactionHistoryRecord.CodingKeys : Swift.RawRepresentable {}
+extension BluePosGoSDK.TransactionResponse.CodingKeys : Swift.Equatable {}
+extension BluePosGoSDK.TransactionResponse.CodingKeys : Swift.Hashable {}
+extension BluePosGoSDK.TransactionResponse.CodingKeys : Swift.RawRepresentable {}

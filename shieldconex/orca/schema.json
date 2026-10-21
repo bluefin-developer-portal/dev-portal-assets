@@ -50,7 +50,7 @@
         },
         "target": {
           "type": "string",
-          "pattern": "^[hH][tT][tT][pP][sS]?:\\/\\/(?![lL][oO][cC][aA][lL][hH][oO][sS][tT]|[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*|.*[cC][aA][rR][dD][cC][oO][nN][eE][xX]\\.[lL][oO][cC][aA][lL])(?:[^\\x00-\\x20\"'\u003C\u003E%\\\\^`{|}]|%[0-9a-fA-F]{2}|\\{[+#./;?&=,!@|]?(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?(?:,(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?)*\\})*$",
+          "pattern": "^[hH][tT][tT][pP][sS]?:\\/\\/(?![lL][oO][cC][aA][lL][hH][oO][sS][tT]|[0-9]*\\.[0-9]*\\.[0-9]*\\.[0-9]*|.*[cC][aA][rR][dD][cC][oO][nN][eE][xX]\\.[lL][oO][cC][aA][lL])(?:[^\\x00-\\x20\"'<>%\\\\^`{|}]|%[0-9a-fA-F]{2}|\\{[+#./;?&=,!@|]?(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?(?:,(?:[a-zA-Z0-9_]|%[0-9a-fA-F]{2})+(?::[1-9][0-9]{0,3}|\\*)?)*\\})*$",
           "maxLength": 4096
         },
         "authorization": {
@@ -576,8 +576,8 @@
         "serialLocation",
         "deviceTypeLocation",
         "primaryAccountNumberLocation",
-        "ksiLocation",
-        "pinBlockLocation",
+        "sourceKsnLocation",
+        "sourcePinBlockLocation",
         "destinationKsiLocation"
       ],
       "properties": {
@@ -614,7 +614,7 @@
           "$ref": "#/$defs/transformation-item",
           "unevaluatedProperties": false
         },
-        "ksiLocation": {
+        "sourceKsnLocation": {
           "$ref": "#/$defs/transformation-item",
           "unevaluatedProperties": false
         },
@@ -622,7 +622,7 @@
           "$ref": "#/$defs/transformation-item",
           "unevaluatedProperties": false
         },
-        "pinBlockLocation": {
+        "sourcePinBlockLocation": {
           "$ref": "#/$defs/transformation-item",
           "unevaluatedProperties": false
         },
